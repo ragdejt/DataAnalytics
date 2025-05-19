@@ -29,7 +29,7 @@ def page_config(
             )
     else:
         streamlit.header('Transforme dados em :green[Decisões estratégicas]', divider='green')
-        streamlit.subheader('``Centralize informações, automatize processos e ganhe eficiência operacional com relatórios em tempo real.``')  
+        streamlit.subheader('Centralize informações, automatize processos e ganhe eficiência operacional com relatórios em tempo real.')  
         streamlit.write("Isso não é futurismo é :green[DataAnalytics]!")
 
         with streamlit.expander("Porque Data Analytics ?"):

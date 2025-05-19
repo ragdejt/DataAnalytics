@@ -1,5 +1,4 @@
 from pathlib import Path
-from rich import print
 
 USER_HOME = Path.home()
 
@@ -17,3 +16,18 @@ OK = '[[green]✓[/green]]'
 RUNNING = '[[yellow]-[/yellow]]'
 
 ERROR = '[[red]✗[/red]]'
+
+MONTHS = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
+]
