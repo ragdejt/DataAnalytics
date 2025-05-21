@@ -1,7 +1,3 @@
-import logging
-from constants.paths import LOG_FOLDER
-
-
 def timer(func):
     from datetime import datetime
     import time

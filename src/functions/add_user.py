@@ -2,7 +2,7 @@
 from sql.models.User import User
 from sql.database.database import SessionLocal
 from decorators.timer import timer
-from constants.paths import OK, RUNNING
+from constants.paths import OK
 # Funcion to add a new user to the database.
 @timer
 def add_user(
