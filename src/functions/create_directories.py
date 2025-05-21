@@ -10,17 +10,10 @@ LIST_DIRECTORIES = [
 ]
 @timer
 def create_directories():
-    """Create necessary directories for the project."""
-
-    print("\nStarting directory creation process.\n")
-
+    """Cria os diretórios necessários para o projeto funcionar."""
     for dir in LIST_DIRECTORIES:
         if dir.exists():
-            print(f"{OK} Directory already exists: {dir}\n")
+            print(f"{OK} {dir}\n")
         else:
-            print(f"{RUNNING} Creating directory: {dir}")
-
             dir.mkdir(parents=True, exist_ok=True)
-
-            print(f"{OK} Created directory: {dir}\n")
-    print("Directory creation process completed successfully!")
+            print(f"{OK} Diretório criado: {dir}\n")

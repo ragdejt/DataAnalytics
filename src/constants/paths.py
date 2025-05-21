@@ -31,3 +31,10 @@ MONTHS = [
     "Novembro",
     "Dezembro"
 ]
+
+CATEGORIES = [
+    'Seco',
+    'Resfriado',
+    'Congelado',
+    'Ultra Congelado'
+]

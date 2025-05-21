@@ -1,8 +1,10 @@
 # Import necessary modules.
 from sql.models.User import User
 from sql.database.database import SessionLocal
-
+from decorators.timer import timer
+from constants.paths import OK, RUNNING
 # Funcion to add a new user to the database.
+@timer
 def add_user(
     username: str,
     email: str,
@@ -10,7 +12,7 @@ def add_user(
     password: str,
     is_active: int = 1  # Default to active
 ):
-    """Add a new user to the database."""
+    """Adiciona um usuario ao banco de dados."""
     try:
         with SessionLocal() as session:
             session.add(User(
@@ -20,6 +22,8 @@ def add_user(
                 password=password,
                 is_active=is_active
             ))
-            session.commit()
     except Exception:
         session.rollback()
+    else:
+        print(f"{OK} Usuário {username}")
+        session.commit()

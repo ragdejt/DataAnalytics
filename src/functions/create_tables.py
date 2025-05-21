@@ -1,12 +1,11 @@
-from rich import print
 from decorators.timer import timer
-from sql.database.database import Base
 from sql.database.database import engine
 
 @timer
 def create_tables():
-    """Create all tables in the database."""
+    """Cria todas tabelas necessárias no banco de dados."""
+    from sql.models.User import User
+    from sql.models.Product import Product
 
-    print("Starting table creation process.\n")
-    Base.metadata.create_all(bind=engine)
-    print("\nTable creation process completed successfully!")
+    User.__table__.create(bind=engine, checkfirst=True)
+    Product.__table__.create(bind=engine, checkfirst=True)

@@ -99,3 +99,4 @@ else:
     create_directories()
     # Create all tables in the database.
     create_tables()
+    
