@@ -1,17 +1,12 @@
 from rich import print
+from pathlib import Path
 from decorators.timer import timer
-from constants.paths import SCRIPT_FOLDER, SQL_FOLDER, EXCEL_FOLDER, LOG_FOLDER, OK, RUNNING
+from constants.paths import OK
 
-LIST_DIRECTORIES = [
-    SCRIPT_FOLDER,
-    SQL_FOLDER,
-    EXCEL_FOLDER,
-    LOG_FOLDER
-]
 @timer
-def create_directories():
+def create_directories(*directories:Path):
     """Cria os diretórios necessários para o projeto funcionar."""
-    for dir in LIST_DIRECTORIES:
+    for dir in directories:
         if dir.exists():
             print(f"{OK} {dir}\n")
         else:

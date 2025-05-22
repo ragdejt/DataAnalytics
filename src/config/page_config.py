@@ -17,16 +17,29 @@ def page_config(
     if 'login' not in streamlit.session_state:
         streamlit.session_state['login'] = False
     
-    streamlit.title(f':green[{title}]')
+    streamlit.title(':green[DataAnalytics]')
 
     if streamlit.session_state['login']:
 
+        
         with streamlit.sidebar:
             streamlit.button(
                 label='Sair',
                 use_container_width=True,
                 on_click=lambda: streamlit.session_state.update({'login': False}),
             )
+            option = streamlit.selectbox(
+                label='Selecione uma opção',
+                options=[
+                    'Adicionar',
+                    'Editar',
+                    'Remover',
+                    'Consultar'
+                ],
+                index=None,
+                placeholder='Selecione uma opção'
+            )
+            return option
     else:
         streamlit.header('Transforme dados em :green[Decisões estratégicas]', divider='green')
         streamlit.subheader('Centralize informações, automatize processos e ganhe eficiência operacional com relatórios em tempo real.')  

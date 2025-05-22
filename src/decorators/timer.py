@@ -6,9 +6,12 @@ def timer(func):
         start_time = time.time()
         print("".center(75, "="))
         print(f'[bold yellow]Function[/bold yellow]: {func.__name__}')
-        print(f'[bold magenta]Arguments[/bold magenta]: {args}')
-        print(f'[bold magenta]KeyWord arguments[/bold magenta]: {kwargs}')
-        print(f"[bold blue]Description[/bold blue]: {func.__doc__}")
+        for arg in args:
+            print(f'[bold magenta]Arg[/bold magenta]: {arg}')
+        for kwarg in kwargs:
+            print(f'[bold magenta]Kwarg[/bold magenta]: {kwarg} = {kwargs[kwarg]}')
+        if func.__doc__:
+            print(f"[bold blue]Docstring[/bold blue]: {func.__doc__}")
         print('[bold green]Date Time[/bold green]:', datetime.now().strftime(format="%d/%m/%Y - %H:%M:%S"))
         print("".center(75, "-"))
         
