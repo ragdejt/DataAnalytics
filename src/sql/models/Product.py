@@ -1,12 +1,12 @@
-from sqlalchemy import Column, String, Integer, Boolean, TIMESTAMP
+from sqlalchemy import Column, String, Integer, Boolean
 from sql.database.database import Base
-from datetime import datetime
 
 class Product(Base):
     __tablename__= "Produtos"
 
     id = Column(
-        Integer,        primary_key=True,
+        Integer,
+        primary_key=True,
         autoincrement=True,
     )
     name = Column(
@@ -37,15 +37,6 @@ class Product(Base):
     )
     weight = Column(
         Integer,
-    )
-    created = Column(
-        TIMESTAMP,
-        default=datetime.now().strftime("%d/%m/%Y - %H:%M:%S"),
-    )
-    updated = Column(
-        TIMESTAMP,
-        default=datetime.now().strftime("%d/%m/%Y - %H:%M:%S"),
-        onupdate=datetime.now().strftime("%d/%m/%Y - %H:%M:%S"),
     )
     active = Column(
         Boolean,

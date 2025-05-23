@@ -1,10 +1,9 @@
 import streamlit
-from datetime import datetime
 from constants.paths import CATEGORIES
 from config.page_config import page_config
 from functions.view_table import view_table
-from sql.models.Product import Product
 from functions.add_db import add_product
+from constants.paths import OK
 produtos = page_config(title="Produtos")
 
 if streamlit.session_state['login']:
@@ -82,14 +81,14 @@ if streamlit.session_state['login']:
                     width=product_width,
                     length=product_length,
                     weight=product_weight,
-                    created=datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-                    updated=None,
                     active=product_active
                 )
+                streamlit.success(f"Produto {product_name} adicionado!")
+                streamlit.toast(f"Produto {product_name} adicionado!")
         case 'Editar':
             streamlit.subheader(":green[Editar produto]", divider='green')
         case 'Remover':
             streamlit.subheader(":green[Remover produto]", divider='green')
         case 'Consultar':
-            view_table(table=Product)
+            view_table(table='Produtos')
 

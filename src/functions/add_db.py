@@ -3,6 +3,7 @@ from decorators.timer import timer
 from constants.paths import OK
 from rich import print
 from sql.models.Product import Product
+from sqlalchemy.exc import PendingRollbackError
 
 @timer
 def add_user(
@@ -40,14 +41,12 @@ def add_product(
     width,
     length,
     weight,
-    created,
-    updated,
     active,
 ):
     """Adiciona um produto ao banco de dados."""
     try:
         with SessionLocal() as session:
-            new_product = Product(
+            session.add(Product(
                 name=name,
                 description=description,
                 category=category,
@@ -57,14 +56,11 @@ def add_product(
                 width=width,
                 length=length,
                 weight=weight,
-                created=created,
-                updated=updated,
                 active=active
-            )
-            session.add(new_product)
+            ))
             session.commit()
-    except Exception:
+    except PendingRollbackError:
         session.rollback()
-    else:
-        print(f"{OK} Produto {name}")
+    finally:
+        session.close()
 
