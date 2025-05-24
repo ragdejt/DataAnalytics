@@ -1,8 +1,8 @@
-from sql.database.database import SessionLocal
+from database.database import SessionLocal
 from decorators.timer import timer
 from constants.paths import OK
 from rich import print
-from sql.models.Product import Product
+from models.Product import Product
 from sqlalchemy.exc import PendingRollbackError
 
 @timer
@@ -14,7 +14,7 @@ def add_user(
     is_active: int = 1 
 ):
     """Adiciona um usuario ao banco de dados."""
-    from sql.models.User import User
+    from models.User import User
     try:
         with SessionLocal() as session:
             session.add(User(

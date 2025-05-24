@@ -1,10 +1,9 @@
 import streamlit
 import plotly.express
-from decorators.timer import timer
 
 dataframe_exemplo = plotly.express.data.tips()
 
-@timer
+# TMC - Tempo Médio de Conferência
 def tmc_graph():
     """Grafico de Tempo Médio de Conferência (TMC)."""
     graph_tmc = plotly.express.scatter(
@@ -17,8 +16,7 @@ def tmc_graph():
         color_discrete_sequence=['#00FF00'],
     )
     streamlit.plotly_chart(graph_tmc, use_container_width=True)
-
-@timer
+# POE - Produtividade por Operador de Equipe
 def poe_graph():
     """Grafico de Produtividade por Operador de Equipe (POE)."""
     graph_poe = plotly.express.box(
@@ -31,8 +29,7 @@ def poe_graph():
         color_discrete_sequence=['#00FF00']
     )
     streamlit.plotly_chart(graph_poe, use_container_width=True)
-
-@timer
+# TUA - Taxa de Utilização de Agendamentos
 def tua_graph():
     """Grafico de Taxa de Utilização de Agendamentos (TUA)."""
     graph_tua = plotly.express.funnel(
@@ -45,8 +42,7 @@ def tua_graph():
         color_discrete_sequence=['#00FF00'],
     )
     streamlit.plotly_chart(graph_tua, use_container_width=True)
-
-@timer
+# VAM - Veículos Atendidos por Mês
 def vam_graph():
     """Grafico de Veículos Atendidos por Mês (VAM)."""
     graph_vam = plotly.express.line(
@@ -60,8 +56,7 @@ def vam_graph():
         markers=True,
     )
     streamlit.plotly_chart(graph_vam, use_container_width=True)
-
-@timer
+# TMD - Tempo Médio de Descarga
 def tmd_graph():
     """Grafico de Tempo Médio de Descarga (TMD)."""
     graph_tmd = plotly.express.bar(
@@ -74,3 +69,45 @@ def tmd_graph():
         color_discrete_sequence=['#00FF00'],
     )
     streamlit.plotly_chart(graph_tmd, use_container_width=True)
+#TRP - Taxa de Retorno de Produto
+def trp_graph():
+    """Grafico de Taxa de Retorno de Produto (TRP)."""
+    graph_trp = plotly.express.pie(
+        dataframe_exemplo,
+        values='total_bill',
+        names='day',
+        title='Taxa de Retorno de Produto',
+        subtitle='TRP',
+        labels={'Mês': 'Mês', 'TRP': 'Taxa de Retorno de Produto'},
+        color_discrete_sequence=['#00FF00'],
+    )
+    streamlit.plotly_chart(graph_trp, use_container_width=True)
+#TDP - Taxa de Devolução de produto
+def tdp_graph():
+    """Grafico de Taxa de Devolução de produto (TDP)."""
+    graph_tdp = plotly.express.line_3d(
+        dataframe_exemplo,
+        x='day',
+        y='total_bill',
+        z='tip',
+        title='Taxa de Devolução de produto',
+        subtitle='TDP',
+        labels={'Mês': 'Mês', 'TDP': 'Taxa de Devolução de produto'},
+        color_discrete_sequence=['#00FF00'],
+        markers=True,
+    )
+    streamlit.plotly_chart(graph_tdp, use_container_width=True)
+#TCxTP - Tempo de Conferência por Tipo de Produto
+def tcxtp_graph():
+    """Grafico de Tempo de Conferência por Tipo de Produto (TCxTP)."""
+    graph_tcxtp = plotly.express.scatter_3d(
+        dataframe_exemplo,
+        x='day',
+        y='total_bill',
+        z='tip',
+        title='Tempo de Conferência por Tipo de Produto',
+        subtitle='TCxTP',
+        labels={'Mês': 'Mês', 'TCxTP': 'Tempo de Conferência por Tipo de Produto'},
+        color_discrete_sequence=['#00FF00'],
+    )
+    streamlit.plotly_chart(graph_tcxtp, use_container_width=True)
