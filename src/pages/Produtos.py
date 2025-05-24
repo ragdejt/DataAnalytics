@@ -6,7 +6,6 @@ from functions.add_db import add_product
 produtos = page_config(title="Produtos")
 
 if streamlit.session_state['login']:
-
     match produtos:
         case 'Adicionar':
             streamlit.subheader(":green[Adicionar produto]", divider='green')

@@ -16,7 +16,23 @@ def page_config(
 
     if 'login' not in streamlit.session_state:
         streamlit.session_state['login'] = False
-    
+        
+    streamlit.markdown(
+        """
+        <style>
+
+        .stMainMenu {
+            display:none;
+        }
+
+        .stDecoration {
+            display:none;
+        }
+
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     streamlit.title(':green[DataAnalytics]')
 
     if streamlit.session_state['login']:

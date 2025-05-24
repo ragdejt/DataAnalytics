@@ -1,44 +1,44 @@
 from sqlalchemy import Column, String, Integer, Boolean
-from sql.database.database import Base
+from database.database import Base
 
 class Product(Base):
     __tablename__= "Produtos"
 
-    id = Column(
+    ID = Column(
         Integer,
         primary_key=True,
         autoincrement=True,
     )
-    name = Column(
+    Nome = Column(
         String,
         unique=True,
     )
-    description = Column(
+    Descricao = Column(
         String,
         nullable=True,
     )
-    category = Column(
+    Categoria = Column(
         String,
     )
-    price = Column(
+    Preco = Column(
         Integer,
     )
-    quantity = Column(
+    Quantidade = Column(
         Integer,
     )
-    height = Column(
+    Altura = Column(
         Integer,
     )
-    width = Column(
+    Largura = Column(
         Integer,
     )
-    length = Column(
+    Comprimento = Column(
         Integer,
     )
-    weight = Column(
+    Peso = Column(
         Integer,
     )
-    active = Column(
+    Ativo = Column(
         Boolean,
         default=False,
     )

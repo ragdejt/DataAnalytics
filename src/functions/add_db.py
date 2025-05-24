@@ -47,16 +47,16 @@ def add_product(
     try:
         with SessionLocal() as session:
             session.add(Product(
-                name=name,
-                description=description,
-                category=category,
-                price=price,
-                quantity=quantity,
-                height=height,
-                width=width,
-                length=length,
-                weight=weight,
-                active=active
+                Nome=name,
+                Descricao=description,
+                Categoria=category,
+                Preco=price,
+                Quantidade=quantity,
+                Altura=height,
+                Largura=width,
+                Comprimento=length,
+                Peso=weight,
+                Ativo=active
             ))
             session.commit()
     except PendingRollbackError:

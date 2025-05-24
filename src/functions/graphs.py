@@ -1,15 +1,15 @@
 import streamlit
 import plotly.express
 
-dataframe_exemplo = plotly.express.data.tips()
+dataframe_exemplo = plotly.express.data.iris()
 
 # TMC - Tempo Médio de Conferência
 def tmc_graph():
     """Grafico de Tempo Médio de Conferência (TMC)."""
     graph_tmc = plotly.express.scatter(
         dataframe_exemplo,
-        x='day',
-        y='total_bill',
+        x='sepal_width',
+        y='sepal_length',
         title='Tempo Médio de Conferência',
         subtitle='TMC',
         labels={'Mês': 'Mês', 'TMC': 'Tempo Médio de Conferência'},
@@ -21,8 +21,8 @@ def poe_graph():
     """Grafico de Produtividade por Operador de Equipe (POE)."""
     graph_poe = plotly.express.box(
         dataframe_exemplo,
-        x='day',
-        y='total_bill',
+        x='sepal_width',
+        y='sepal_length',
         title='Produtividade por Operador de Equipe',
         subtitle='POE',
         labels={'Mês': 'Mês', 'POE': 'Produtividade por Operador de Equipe'},
@@ -34,8 +34,8 @@ def tua_graph():
     """Grafico de Taxa de Utilização de Agendamentos (TUA)."""
     graph_tua = plotly.express.funnel(
         dataframe_exemplo,
-        x='day',
-        y='total_bill',
+        x='sepal_width',
+        y='sepal_length',
         title='Taxa de Utilização de Agendamentos',
         subtitle='TUA',
         labels={'Mês': 'Mês', 'TUA': 'Taxa de Utilização de Agendamentos'},
@@ -47,8 +47,8 @@ def vam_graph():
     """Grafico de Veículos Atendidos por Mês (VAM)."""
     graph_vam = plotly.express.line(
         dataframe_exemplo,
-        x='day',
-        y='total_bill',
+        x='sepal_width',
+        y='sepal_length',
         title='Veículos Atendidos por Mês',
         subtitle='VAM',
         labels={'Mês': 'Mês', 'VAM': 'TVeículos Atendidos por Mês'},
@@ -61,8 +61,8 @@ def tmd_graph():
     """Grafico de Tempo Médio de Descarga (TMD)."""
     graph_tmd = plotly.express.bar(
         dataframe_exemplo,
-        x='day',
-        y='total_bill',
+        x='sepal_width',
+        y='sepal_length',
         title='Tempo Médio de Descarga',
         subtitle='TMD',
         labels={'Mês': 'Mês', 'TMD': 'Tempo Médio de Descarga'},
@@ -74,8 +74,8 @@ def trp_graph():
     """Grafico de Taxa de Retorno de Produto (TRP)."""
     graph_trp = plotly.express.pie(
         dataframe_exemplo,
-        values='total_bill',
-        names='day',
+        values='sepal_length',
+        names='sepal_width',
         title='Taxa de Retorno de Produto',
         subtitle='TRP',
         labels={'Mês': 'Mês', 'TRP': 'Taxa de Retorno de Produto'},
@@ -87,9 +87,9 @@ def tdp_graph():
     """Grafico de Taxa de Devolução de produto (TDP)."""
     graph_tdp = plotly.express.line_3d(
         dataframe_exemplo,
-        x='day',
-        y='total_bill',
-        z='tip',
+        x='sepal_width',
+        y='sepal_length',
+        z='petal_length',
         title='Taxa de Devolução de produto',
         subtitle='TDP',
         labels={'Mês': 'Mês', 'TDP': 'Taxa de Devolução de produto'},
@@ -102,9 +102,9 @@ def tcxtp_graph():
     """Grafico de Tempo de Conferência por Tipo de Produto (TCxTP)."""
     graph_tcxtp = plotly.express.scatter_3d(
         dataframe_exemplo,
-        x='day',
-        y='total_bill',
-        z='tip',
+        x='sepal_width',
+        y='sepal_length',
+        z='petal_length',
         title='Tempo de Conferência por Tipo de Produto',
         subtitle='TCxTP',
         labels={'Mês': 'Mês', 'TCxTP': 'Tempo de Conferência por Tipo de Produto'},
