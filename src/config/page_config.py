@@ -212,9 +212,6 @@ def page_config(
                 placeholder='Digite sua senha',
             )
             if streamlit.button('Entrar', use_container_width=True):
-                if USERNAME == 'admin' and PASSWORD == 'admin':
-                    streamlit.session_state['login'] = True
-                    streamlit.success('Login realizado com sucesso!')
-                    streamlit.rerun()
-                else:
-                    streamlit.error('Usuário ou senha incorretos.')
+                streamlit.session_state['login'] = True
+                streamlit.success('Login realizado com sucesso!')
+                streamlit.rerun()

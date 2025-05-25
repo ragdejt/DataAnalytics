@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, Integer, Boolean
 from database.database import Base
 
-class Product(Base):
+class Produto(Base):
     __tablename__= "Produtos"
 
     ID = Column(

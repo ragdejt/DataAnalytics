@@ -4,8 +4,8 @@ from database.database import engine
 @timer
 def create_tables():
     """Cria todas tabelas necessárias no banco de dados."""
-    from models.User import User
-    from models.Product import Product
+    from models.usuario import Usuario
+    from models.produto import Produto
 
-    User.__table__.create(bind=engine, checkfirst=True)
-    Product.__table__.create(bind=engine, checkfirst=True)
+    Usuario.__table__.create(bind=engine, checkfirst=True)
+    Produto.__table__.create(bind=engine, checkfirst=True)
