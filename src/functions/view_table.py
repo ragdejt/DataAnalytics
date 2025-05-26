@@ -1,10 +1,8 @@
-import streamlit
 from database.database import SessionLocal
 import pandas
-def view_table(table):
-    """Exibe uma tabela do banco de dados."""
+def view_table(table_name):
+    """Retorna uma tabela do banco de dados."""
     with SessionLocal() as session:
-        query = f'SELECT * FROM {table}'
+        query = f'SELECT * FROM {table_name}'
         df = pandas.read_sql(query, session.bind)
-        
-        streamlit.dataframe(df)
+        return df

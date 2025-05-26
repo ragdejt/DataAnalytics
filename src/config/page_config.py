@@ -49,7 +49,6 @@ def page_config(
                 options=[
                     'Adicionar',
                     'Editar',
-                    'Remover',
                     'Consultar'
                 ],
                 index=None,

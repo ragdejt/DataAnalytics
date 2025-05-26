@@ -11,9 +11,6 @@ if streamlit.session_state['login']:
         case 'Editar':
             streamlit.subheader(":green[Editar fornecedores]", divider='green')
             streamlit.info("Funcionalidade em desenvolvimento.")
-        case 'Remover':
-            streamlit.subheader(":green[Excluir fornecedores]", divider='green')
-            streamlit.info("Funcionalidade em desenvolvimento.")
         case 'Consultar':
             streamlit.subheader(":green[Consultar fornecedores]", divider='green')
             streamlit.info("Funcionalidade em desenvolvimento.")

@@ -3,6 +3,7 @@ from constants.paths import CATEGORIES
 from config.page_config import page_config
 from functions.view_table import view_table
 from functions.add_db import add_product
+from functions.edit_table import edit_table
 produtos = page_config(title="Produtos")
 
 if streamlit.session_state['login']:
@@ -85,18 +86,8 @@ if streamlit.session_state['login']:
                 streamlit.toast(f"Produto {product_name} adicionado!")
         case 'Editar':
             streamlit.subheader(":green[Editar produto]", divider='green')
-        case 'Remover':
-            streamlit.subheader(":green[Remover produto]", divider='green')
-            product_search = streamlit.text_input(
-                label="Nome do produto",
-                placeholder="Digite o nome do produto",
-            )
-            streamlit.button(
-                label="Procurar produto",
-                use_container_width=True
-            )
-            query = f"SELECT * FROM Produtos WHERE name = {product_search}"
+            edit_table(table_name='Produtos')
         case 'Consultar':
             streamlit.subheader(":green[Consultar produtos]", divider='green')
-            view_table(table='Produtos')
+            streamlit.dataframe(view_table('Produtos'))
 

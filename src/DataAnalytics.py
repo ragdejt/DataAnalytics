@@ -4,7 +4,7 @@ import streamlit
 from config.page_config import page_config
 from functions.create_tables import create_tables
 from functions.create_directories import create_directories
-from constants.paths import SCRIPT_FOLDER, SQL_FOLDER, EXCEL_FOLDER, LOG_FOLDER, MONTHS
+from constants.paths import SCRIPT_FOLDER, SQL_FOLDER, EXCEL_FOLDER, LOG_FOLDER, DAY
 from functions.graphs import graph_config
 
 DataAnalytics = page_config(initial_sidebar_state="collapsed")
@@ -16,49 +16,59 @@ if streamlit.session_state['login']:
         streamlit.subheader(":green[``TMD`` - Tempo Médio de Descarga]", divider="green")
         tmd_dataframe = pandas.DataFrame(
             data={
-                'Janeiro':numpy.random.randint(0, 100, size=1),
-                'Fevereiro':numpy.random.randint(0, 100, size=1),
-                'Março':numpy.random.randint(0, 100, size=1),
-                'Abril':numpy.random.randint(0, 100, size=1),
-                'Maio':numpy.random.randint(0, 100, size=1),
-                'Junho':numpy.random.randint(0, 100, size=1),
-                'Julho':numpy.random.randint(0, 100, size=1),
-                'Agosto':numpy.random.randint(0, 100, size=1),
-                'Setembro':numpy.random.randint(0, 100, size=1),
-                'Outubro':numpy.random.randint(0, 100, size=1),
-                'Novembro':numpy.random.randint(0, 100, size=1),
-                'Dezembro':numpy.random.randint(0, 100, size=1),
+                'Dia':DAY,
+                '01-Janeiro':numpy.random.randint(0, 100, size=30),
+                '02-Fevereiro':numpy.random.randint(0, 100, size=30),
+                '03-Março':numpy.random.randint(0, 100, size=30),
+                '04-Abril':numpy.random.randint(0, 100, size=30),
+                '05-Maio':numpy.random.randint(0, 100, size=30),
+                '06-Junho':numpy.random.randint(0, 100, size=30),
+                '07-Julho':numpy.random.randint(0, 100, size=30),
+                '08-Agosto':numpy.random.randint(0, 100, size=30),
+                '09-Setembro':numpy.random.randint(0, 100, size=30),
+                '10-Outubro':numpy.random.randint(0, 100, size=30),
+                '11-Novembro':numpy.random.randint(0, 100, size=30),
+                '12-Dezembro':numpy.random.randint(0, 100, size=30),
             }
         )
         graph_config(dataframe=tmd_dataframe, name='TMD')
         streamlit.info("Identifica gargalos no processo de descarregamento.")
 
         streamlit.divider()
-
-        streamlit.metric(
-            label=':green[``TMD`` - Tempo Médio de Descarga]',
-            value=f'{numpy.random.randint(0, 100)}%',
-            delta=f'{numpy.random.randint(0, 100)}%',
-            delta_color="normal",
-        )
+        tmd_column1, tmd_column2 = streamlit.columns(2)
+        with tmd_column1:
+            streamlit.metric(
+                label=':green[``TMD`` - Tempo Médio de Descarga]',
+                value=f'{numpy.random.randint(0, 100)}%',
+                delta=f'{numpy.random.randint(0, 100)}%',
+                delta_color="normal",
+            )
+        with tmd_column2:
+            streamlit.metric(
+                label=':green[``TMD`` - Tempo Médio de Descarga]',
+                value=f'{numpy.random.randint(0, 60)}min',
+                delta=f'{numpy.random.randint(0, 60)}min',
+                delta_color="normal",
+            )
 
     # Graficos VAM.
     with streamlit.expander(label='Veiculos Atendidos por Mês'):
         streamlit.subheader(":green[``VAM`` - Veículos Atendidos por Mês]", divider="green")
         vam_dataframe = pandas.DataFrame(
             data={
-                'Janeiro':numpy.random.randint(0, 100, size=1),
-                'Fevereiro':numpy.random.randint(0, 100, size=1),
-                'Março':numpy.random.randint(0, 100, size=1),
-                'Abril':numpy.random.randint(0, 100, size=1),
-                'Maio':numpy.random.randint(0, 100, size=1),
-                'Junho':numpy.random.randint(0, 100, size=1),
-                'Julho':numpy.random.randint(0, 100, size=1),
-                'Agosto':numpy.random.randint(0, 100, size=1),
-                'Setembro':numpy.random.randint(0, 100, size=1),
-                'Outubro':numpy.random.randint(0, 100, size=1),
-                'Novembro':numpy.random.randint(0, 100, size=1),
-                'Dezembro':numpy.random.randint(0, 100, size=1),
+                'Dia':DAY,
+                '01-Janeiro':numpy.random.randint(0, 100, size=30),
+                '02-Fevereiro':numpy.random.randint(0, 100, size=30),
+                '03-Março':numpy.random.randint(0, 100, size=30),
+                '04-Abril':numpy.random.randint(0, 100, size=30),
+                '05-Maio':numpy.random.randint(0, 100, size=30),
+                '06-Junho':numpy.random.randint(0, 100, size=30),
+                '07-Julho':numpy.random.randint(0, 100, size=30),
+                '08-Agosto':numpy.random.randint(0, 100, size=30),
+                '09-Setembro':numpy.random.randint(0, 100, size=30),
+                '10-Outubro':numpy.random.randint(0, 100, size=30),
+                '11-Novembro':numpy.random.randint(0, 100, size=30),
+                '12-Dezembro':numpy.random.randint(0, 100, size=30),
             }
         )
         graph_config(dataframe=vam_dataframe, name='VAM')
@@ -77,18 +87,19 @@ if streamlit.session_state['login']:
         streamlit.subheader(":green[``TMC`` - Tempo Médio de Conferência]", divider="green")
         tmc_dataframe = pandas.DataFrame(
             data={
-                'Janeiro':numpy.random.randint(0, 100, size=1),
-                'Fevereiro':numpy.random.randint(0, 100, size=1),
-                'Março':numpy.random.randint(0, 100, size=1),
-                'Abril':numpy.random.randint(0, 100, size=1),
-                'Maio':numpy.random.randint(0, 100, size=1),
-                'Junho':numpy.random.randint(0, 100, size=1),
-                'Julho':numpy.random.randint(0, 100, size=1),
-                'Agosto':numpy.random.randint(0, 100, size=1),
-                'Setembro':numpy.random.randint(0, 100, size=1),
-                'Outubro':numpy.random.randint(0, 100, size=1),
-                'Novembro':numpy.random.randint(0, 100, size=1),
-                'Dezembro':numpy.random.randint(0, 100, size=1),
+                'Dia':DAY,
+                '01-Janeiro':numpy.random.randint(0, 100, size=30),
+                '02-Fevereiro':numpy.random.randint(0, 100, size=30),
+                '03-Março':numpy.random.randint(0, 100, size=30),
+                '04-Abril':numpy.random.randint(0, 100, size=30),
+                '05-Maio':numpy.random.randint(0, 100, size=30),
+                '06-Junho':numpy.random.randint(0, 100, size=30),
+                '07-Julho':numpy.random.randint(0, 100, size=30),
+                '08-Agosto':numpy.random.randint(0, 100, size=30),
+                '09-Setembro':numpy.random.randint(0, 100, size=30),
+                '10-Outubro':numpy.random.randint(0, 100, size=30),
+                '11-Novembro':numpy.random.randint(0, 100, size=30),
+                '12-Dezembro':numpy.random.randint(0, 100, size=30),
             }
         )
         graph_config(dataframe=tmc_dataframe, name='TMC')
@@ -106,18 +117,19 @@ if streamlit.session_state['login']:
         streamlit.subheader(":green[``POE`` - Produtividade por Operador de Equipe]", divider="green")
         poe_dataframe = pandas.DataFrame(
             data={
-                'Janeiro':numpy.random.randint(0, 100, size=1),
-                'Fevereiro':numpy.random.randint(0, 100, size=1),
-                'Março':numpy.random.randint(0, 100, size=1),
-                'Abril':numpy.random.randint(0, 100, size=1),
-                'Maio':numpy.random.randint(0, 100, size=1),
-                'Junho':numpy.random.randint(0, 100, size=1),
-                'Julho':numpy.random.randint(0, 100, size=1),
-                'Agosto':numpy.random.randint(0, 100, size=1),
-                'Setembro':numpy.random.randint(0, 100, size=1),
-                'Outubro':numpy.random.randint(0, 100, size=1),
-                'Novembro':numpy.random.randint(0, 100, size=1),
-                'Dezembro':numpy.random.randint(0, 100, size=1),
+                'Dia':DAY,
+                '01-Janeiro':numpy.random.randint(0, 100, size=30),
+                '02-Fevereiro':numpy.random.randint(0, 100, size=30),
+                '03-Março':numpy.random.randint(0, 100, size=30),
+                '04-Abril':numpy.random.randint(0, 100, size=30),
+                '05-Maio':numpy.random.randint(0, 100, size=30),
+                '06-Junho':numpy.random.randint(0, 100, size=30),
+                '07-Julho':numpy.random.randint(0, 100, size=30),
+                '08-Agosto':numpy.random.randint(0, 100, size=30),
+                '09-Setembro':numpy.random.randint(0, 100, size=30),
+                '10-Outubro':numpy.random.randint(0, 100, size=30),
+                '11-Novembro':numpy.random.randint(0, 100, size=30),
+                '12-Dezembro':numpy.random.randint(0, 100, size=30),
             }
         )
         graph_config(dataframe=poe_dataframe, name='POE')
@@ -135,18 +147,19 @@ if streamlit.session_state['login']:
         streamlit.subheader(":green[``TUA`` - Taxa de Utilização de Agendamentos]", divider="green")
         tua_dataframe = pandas.DataFrame(
             data={
-                'Janeiro':numpy.random.randint(0, 100, size=1),
-                'Fevereiro':numpy.random.randint(0, 100, size=1),
-                'Março':numpy.random.randint(0, 100, size=1),
-                'Abril':numpy.random.randint(0, 100, size=1),
-                'Maio':numpy.random.randint(0, 100, size=1),
-                'Junho':numpy.random.randint(0, 100, size=1),
-                'Julho':numpy.random.randint(0, 100, size=1),
-                'Agosto':numpy.random.randint(0, 100, size=1),
-                'Setembro':numpy.random.randint(0, 100, size=1),
-                'Outubro':numpy.random.randint(0, 100, size=1),
-                'Novembro':numpy.random.randint(0, 100, size=1),
-                'Dezembro':numpy.random.randint(0, 100, size=1),
+                'Dia':DAY,
+                '01-Janeiro':numpy.random.randint(0, 100, size=30),
+                '02-Fevereiro':numpy.random.randint(0, 100, size=30),
+                '03-Março':numpy.random.randint(0, 100, size=30),
+                '04-Abril':numpy.random.randint(0, 100, size=30),
+                '05-Maio':numpy.random.randint(0, 100, size=30),
+                '06-Junho':numpy.random.randint(0, 100, size=30),
+                '07-Julho':numpy.random.randint(0, 100, size=30),
+                '08-Agosto':numpy.random.randint(0, 100, size=30),
+                '09-Setembro':numpy.random.randint(0, 100, size=30),
+                '10-Outubro':numpy.random.randint(0, 100, size=30),
+                '11-Novembro':numpy.random.randint(0, 100, size=30),
+                '12-Dezembro':numpy.random.randint(0, 100, size=30),
             }
         )
         graph_config(dataframe=tua_dataframe, name='TUA')

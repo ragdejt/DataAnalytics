@@ -2,7 +2,7 @@ from database.database import SessionLocal
 from decorators.timer import timer
 from constants.paths import OK
 from rich import print
-from models.Product import Product
+from models.produto import Produto
 from sqlalchemy.exc import PendingRollbackError
 
 @timer
@@ -14,10 +14,10 @@ def add_user(
     is_active: int = 1 
 ):
     """Adiciona um usuario ao banco de dados."""
-    from models.User import User
+    from models.usuario import Usuario
     try:
         with SessionLocal() as session:
-            session.add(User(
+            session.add(Usuario(
                 username=username,
                 email=email,
                 full_name=full_name,
@@ -46,7 +46,7 @@ def add_product(
     """Adiciona um produto ao banco de dados."""
     try:
         with SessionLocal() as session:
-            session.add(Product(
+            session.add(Produto(
                 Nome=name,
                 Descricao=description,
                 Categoria=category,
