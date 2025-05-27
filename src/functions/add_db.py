@@ -1,6 +1,6 @@
 from database.database import SessionLocal
 from decorators.timer import timer
-from constants.paths import OK
+from constants.constants import OK
 from rich import print
 from models.produto import Produto
 from sqlalchemy.exc import PendingRollbackError

@@ -1,7 +1,7 @@
 from rich import print
 from pathlib import Path
 from decorators.timer import timer
-from constants.paths import OK
+from constants.constants import OK
 
 @timer
 def create_directories(*directories:Path):

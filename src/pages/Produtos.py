@@ -1,5 +1,5 @@
 import streamlit
-from constants.paths import CATEGORIES
+from constants.constants import CATEGORIES
 from config.page_config import page_config
 from functions.view_table import view_table
 from functions.add_db import add_product

@@ -1,4 +1,5 @@
 import pandas
+import numpy
 import streamlit
 def graph_config(dataframe:pandas.DataFrame, name):
     """Configura o gráfico com base no dataframe, eixo X e eixo Y."""
@@ -14,7 +15,21 @@ def graph_config(dataframe:pandas.DataFrame, name):
             
         options=dataframe.columns,
         selection_mode='multi',
-        default='Dia',
+        default=[
+            'Dia',
+            "01-Janeiro",
+            "02-Fevereiro",
+            "03-Março",
+            "04-Abril",
+            "05-Maio",
+            "06-Junho",
+            "07-Julho",
+            "08-Agosto",
+            "09-Setembro",
+            "10-Outubro",
+            "11-Novembro",
+            "12-Dezembro"
+        ],
         key=f'unique_key_for_pills_{name}',
     )
     if not selected:
@@ -23,7 +38,7 @@ def graph_config(dataframe:pandas.DataFrame, name):
     with column1:
         horizontal = streamlit.toggle(
             label='Exibir gráfico horizontal',
-            value=True,
+            value=False,
             disabled=graph_type != 'Barra',
             key=f'unique_key_for_checkbox_toggle_{name}',
         )
@@ -48,6 +63,7 @@ def graph_config(dataframe:pandas.DataFrame, name):
                 data=dataframe[selected],
                 x='Dia',
                 y=selected,
+                y_label=['Dia' if horizontal else 'Tempo (minutos)'],
                 use_container_width=True,
                 horizontal=horizontal,
                 stack=stacked
@@ -74,3 +90,24 @@ def graph_config(dataframe:pandas.DataFrame, name):
                 y=selected,
                 use_container_width=True,
             )
+
+def graph_view(nome:str, sigla:str, dataframe:pandas.DataFrame):
+    """Exibe o gráfico com base no dataframe e nome."""
+    with streamlit.expander(label=f'{nome}'):
+        streamlit.subheader(f":green[``{sigla}`` - {nome}]", divider='green')
+
+        with streamlit.container(border=True):
+            streamlit.metric(
+                label=f':green[``{sigla}`` - {nome}]',
+                value=f'{numpy.random.randint(0, 100)}%',
+                delta=f'{numpy.random.randint(0, 100)}%',
+                delta_color="normal",
+            )
+            streamlit.metric(
+                label=f':green[``{sigla}`` - {nome}]',
+                value=f'{numpy.random.randint(0, 60)}min',
+                delta=f'{numpy.random.randint(0, 60)}min',
+                delta_color="normal",
+            )
+        graph_config(dataframe, nome)
+

@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from constants.paths import SQL_FOLDER
+from constants.constants import SQL_FOLDER
 # Define the database URL
 DATABASE_URL = f"sqlite:///{SQL_FOLDER / 'DataAnalytics.db'}"
 

@@ -37,13 +37,7 @@ def page_config(
 
     if streamlit.session_state['login']:
 
-        
         with streamlit.sidebar:
-            streamlit.button(
-                label='Sair',
-                use_container_width=True,
-                on_click=lambda: streamlit.session_state.update({'login': False}),
-            )
             option = streamlit.selectbox(
                 label='Selecione uma opção',
                 options=[
@@ -53,6 +47,11 @@ def page_config(
                 ],
                 index=None,
                 placeholder='Selecione uma opção'
+            )
+            streamlit.button(
+                label='Sair',
+                use_container_width=True,
+                on_click=lambda: streamlit.session_state.update({'login': False}),
             )
             return option
     else:

@@ -1,5 +1,4 @@
 from pathlib import Path
-from datetime import datetime
 USER_HOME = Path.home()
 
 SCRIPT_FOLDER = USER_HOME / "DataAnalytics"
@@ -68,4 +67,34 @@ CATEGORIES = [
     'Resfriado',
     'Congelado',
     'Ultra Congelado'
+]
+
+ESTADO_CIVIL = [
+    'Solteiro',
+    'Casado',
+    'Divorciado',
+    'Viúvo',
+]
+
+CARGO = [
+    'Gerente',
+    'Vendedor',
+    'Estoquista',
+    'Caixa',
+    'Limpeza',
+    'Segurança',
+    'Atendente',
+    'Supervisor',
+    'Diretor',
+    'Analista',
+    'Assistente',
+    'Coordenador',
+    'Técnico',
+    'Programador',
+    'Designer',
+    'Marketing',
+    'Recursos Humanos',
+    'Financeiro',
+    'Logística',
+    'Suporte Técnico',
 ]
