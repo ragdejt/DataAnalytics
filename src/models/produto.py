@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Boolean
+from sqlalchemy import Column, String, Integer, Boolean, Float
 from database.database import Base
 
 class Produto(Base):
@@ -12,6 +12,7 @@ class Produto(Base):
     Nome = Column(
         String,
         unique=True,
+        nullable=False
     )
     Descricao = Column(
         String,
@@ -30,32 +31,33 @@ class Produto(Base):
     )
     Categoria = Column(
         String,
+        nullable=False
     )
     Preco = Column(
-        Integer,
-        nullable=False
+        Float,
+        nullable=False,
     )
     Quantidade = Column(
         Integer,
-        default=0,
+        nullable=False,
     )
     Altura = Column(
-        Integer,
+        Float,
         nullable=True,
-        default=0,
+        default='Altura Indefinida',
     )
     Largura = Column(
-        Integer,
+        Float,
         nullable=True,
-        default=0,
+        default='Largura Indefinida',
     )
     Comprimento = Column(
-        Integer,
+        Float,
         nullable=True,
-        default=0,
+        default='Comprimento Indefinido',
     )
     Peso = Column(
-        Integer,
+        Float,
         nullable=False,
     )
     Ativo = Column(

@@ -5,7 +5,12 @@ from constants.constants import OK
 
 @timer
 def create_directories(*directories:Path):
-    """Cria os diretórios necessários para o projeto funcionar."""
+    """
+    Cria os diretórios necessários para o projeto funcionar.
+    
+    Args:
+        directories (Path): Lista de diretórios a serem criados.
+    """
     for dir in directories:
         if dir.exists():
             print(f"{OK} {dir}\n")

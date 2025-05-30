@@ -2,7 +2,13 @@ import pandas
 import numpy
 import streamlit
 def graph_config(dataframe:pandas.DataFrame, name):
-    """Configura o gráfico com base no dataframe, eixo X e eixo Y."""
+    """
+    Configura o gráfico com base no dataframe, eixo X e eixo Y.
+    
+    Args:
+        dataframe (pandas.DataFrame): DataFrame contendo os dados a serem plotados.
+        name (str): Nome do gráfico para identificação.
+    """
     graph_type = streamlit.selectbox(
         label="Selecione o tipo de gráfico",
         options=['Barra', 'Area', 'Linha', 'Scatter'],
@@ -92,7 +98,14 @@ def graph_config(dataframe:pandas.DataFrame, name):
             )
 
 def graph_view(nome:str, sigla:str, dataframe:pandas.DataFrame):
-    """Exibe o gráfico com base no dataframe e nome."""
+    """
+    Exibe o gráfico com base no dataframe e nome.
+
+    Args:
+        nome (str): Nome do gráfico.
+        sigla (str): Sigla do gráfico.
+        dataframe (pandas.DataFrame): DataFrame contendo os dados a serem plotados.
+    """
     with streamlit.expander(label=f'{nome}'):
         streamlit.subheader(f":green[``{sigla}`` - {nome}]", divider='green')
 

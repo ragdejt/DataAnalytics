@@ -1,4 +1,6 @@
 import streamlit
+from database.database import SessionLocal
+from sqlalchemy import text
 
 def page_config(
         title:str = 'DataAnalytics',
@@ -16,7 +18,8 @@ def page_config(
 
     if 'login' not in streamlit.session_state:
         streamlit.session_state['login'] = False
-        
+    if 'user' not in streamlit.session_state:
+        streamlit.session_state['user'] = None
     streamlit.markdown(
         """
         <style>
@@ -33,9 +36,18 @@ def page_config(
         """,
         unsafe_allow_html=True
     )
-    streamlit.title(':green[DataAnalytics]')
 
-    if streamlit.session_state['login']:
+    if streamlit.session_state['login'] and streamlit.session_state['user']:
+        coluna1, coluna2 = streamlit.columns(
+            [1, 0.2],
+            gap='small',
+            vertical_alignment='center',
+            border=True
+        )
+        with coluna1:
+            streamlit.title(':green[DataAnalytics]')
+        with coluna2:
+            streamlit.title(f'{streamlit.session_state["user"]}')
 
         with streamlit.sidebar:
             option = streamlit.selectbox(
@@ -53,7 +65,7 @@ def page_config(
                 use_container_width=True,
                 on_click=lambda: streamlit.session_state.update({'login': False}),
             )
-            return option
+        return option
     else:
         streamlit.header('Transforme dados em :green[Decisões estratégicas]', divider='green')
         streamlit.subheader('Centralize informações, automatize processos e ganhe eficiência operacional com relatórios em tempo real.')  
@@ -210,6 +222,15 @@ def page_config(
                 placeholder='Digite sua senha',
             )
             if streamlit.button('Entrar', use_container_width=True):
-                streamlit.session_state['login'] = True
-                streamlit.success('Login realizado com sucesso!')
-                streamlit.rerun()
+                with SessionLocal() as session:
+                    query = text(f"SELECT * FROM Usuarios WHERE Usuario = '{USERNAME}' AND Senha = '{PASSWORD}'")
+                    result = session.execute(query).fetchone()
+                    if result:
+                        streamlit.session_state['login'] = True
+                        streamlit.session_state['user'] = USERNAME
+                        streamlit.success('Login realizado com sucesso!')
+                        streamlit.toast('Login realizado com sucesso!')
+                        streamlit.rerun()
+                    else:
+                        streamlit.error('Usuário ou senha inválidos!')
+                        streamlit.toast('Usuário ou senha inválidos!')

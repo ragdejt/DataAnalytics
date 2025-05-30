@@ -62,7 +62,7 @@ DAY = [
     '30',
 ]
 
-CATEGORIES = [
+CATEGORIAS = [
     'Seco',
     'Resfriado',
     'Congelado',
@@ -97,4 +97,6 @@ CARGO = [
     'Financeiro',
     'Logística',
     'Suporte Técnico',
+    'Motorista',
 ]
+

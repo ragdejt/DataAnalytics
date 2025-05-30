@@ -19,8 +19,8 @@ def timer(func):
         
         print("".center(75, "-"))
         end_time = time.time()
-        result = end_time - start_time
-        print(f"{result:.3f} seconds")
+        tempo = end_time - start_time
+        print(f"{tempo:.3f} seconds")
         print("".center(75, "="))
 
         return result

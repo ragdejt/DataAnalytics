@@ -1,9 +1,9 @@
 import streamlit
-from constants.constants import CATEGORIES
+from constants.constants import CATEGORIAS
 from config.page_config import page_config
-from functions.view_table import view_table
-from functions.add_db import add_product
-from functions.edit_table import edit_table
+from functions.table import view_table
+from functions.product import add_product
+from functions.table import edit_table
 produtos = page_config(title="Produtos")
 
 if streamlit.session_state['login']:
@@ -21,44 +21,45 @@ if streamlit.session_state['login']:
             )
             product_category = streamlit.selectbox(
                 label="Tipo do produto",
-                options=CATEGORIES,
+                options=CATEGORIAS,
                 index=0,
                 placeholder="Selecione o tipo de produto",
+                accept_new_options=True
             )
             produtct_price = streamlit.number_input(
                 label="Preço do produto",
-                min_value=0,
-                step=1,
+                min_value=0.0,
+                step=0.5,
                 placeholder="Digite o preço do produto",
             )
             product_quantity = streamlit.number_input(
                 label="Quantidade do produto",
-                min_value=0,
-                step=1,
+                min_value=0.0,
+                step=0.5,
                 placeholder="Digite a quantidade do produto",
             )
             product_height = streamlit.number_input(
                 label="Altura do produto",
-                min_value=0,
-                step=1,
+                min_value=0.0,
+                step=0.5,
                 placeholder="Digite a altura do produto",
             )
             product_width = streamlit.number_input(
                 label="Largura do produto",
-                min_value=0,
-                step=1,
+                min_value=0.0,
+                step=0.5,
                 placeholder="Digite a largura do produto",
             )
             product_length = streamlit.number_input(
                 label="Comprimento do produto",
-                min_value=0,
-                step=1,
+                min_value=0.0,
+                step=0.5,
                 placeholder="Digite o comprimento do produto",
             )
             product_weight = streamlit.number_input(
                 label="Peso do produto",
-                min_value=0,
-                step=1,
+                min_value=0.0,
+                step=0.5,
                 placeholder="Digite o peso do produto",
             )
             product_active = streamlit.checkbox(
@@ -90,4 +91,3 @@ if streamlit.session_state['login']:
         case 'Consultar':
             streamlit.subheader(":green[Consultar produtos]", divider='green')
             streamlit.dataframe(view_table('Produtos'))
-

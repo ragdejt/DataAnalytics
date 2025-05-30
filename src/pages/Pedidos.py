@@ -1,7 +1,7 @@
 import streamlit
 from config.page_config import page_config
-from functions.edit_table import edit_table
-from functions.view_table import view_table
+from functions.table import edit_table
+from functions.table import view_table
 pedidos = page_config(title="Pedidos")
 
 if streamlit.session_state['login']:

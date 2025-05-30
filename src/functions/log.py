@@ -1,5 +1,5 @@
 import logging
-from constants.paths import LOG_FOLDER
+from constants.constants import LOG_FOLDER
 def logger():
     """Configura o logger para o projeto."""
     logging.basicConfig(
