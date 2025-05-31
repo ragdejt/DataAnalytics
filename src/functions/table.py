@@ -5,14 +5,10 @@ from database.database import engine
 from database.database import SessionLocal
 
 @timer
-def create_tables():
+def create_table(classe):
     """Cria as tabelas no banco de dados."""
     
-    from models.usuario import Usuario
-    from models.produto import Produto
-
-    Usuario.__table__.create(bind=engine, checkfirst=True)
-    Produto.__table__.create(bind=engine, checkfirst=True)
+    classe.__table__.create(bind=engine, checkfirst=True)
 
 
 @timer

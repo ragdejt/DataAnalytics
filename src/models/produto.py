@@ -1,7 +1,37 @@
-from sqlalchemy import Column, String, Integer, Boolean, Float
+from sqlalchemy import Column, String, Integer, Boolean, Numeric
 from database.database import Base
 
 class Produto(Base):
+    """
+    ``Tabela de Produtos``
+    
+    Colunas:
+        ID (int):
+
+        Nome (str):
+
+        Descricao (str):
+
+        Marca (str):
+
+        Modelo (str):
+
+        Categoria (str):
+
+        Preco (numeric):
+
+        Quantidade (int):
+
+        Altura (numeric):
+
+        Largura (numeric):
+
+        Comprimento (numeric):
+
+        Peso (numeric):
+
+        Ativo (boolean):
+    """
     __tablename__= "Produtos"
 
     ID = Column(
@@ -34,7 +64,7 @@ class Produto(Base):
         nullable=False
     )
     Preco = Column(
-        Float,
+        Numeric,
         nullable=False,
     )
     Quantidade = Column(
@@ -42,22 +72,22 @@ class Produto(Base):
         nullable=False,
     )
     Altura = Column(
-        Float,
+        Numeric,
         nullable=True,
         default='Altura Indefinida',
     )
     Largura = Column(
-        Float,
+        Numeric,
         nullable=True,
         default='Largura Indefinida',
     )
     Comprimento = Column(
-        Float,
+        Numeric,
         nullable=True,
         default='Comprimento Indefinido',
     )
     Peso = Column(
-        Float,
+        Numeric,
         nullable=False,
     )
     Ativo = Column(

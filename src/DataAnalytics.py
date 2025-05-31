@@ -4,7 +4,7 @@ import streamlit
 import numpy.random
 from functions.graph import graph_view
 from config.page_config import page_config
-from functions.table import create_tables
+from functions.table import create_table
 from functions.directories import create_directories
 from constants.constants import SCRIPT_FOLDER, SQL_FOLDER, EXCEL_FOLDER, LOG_FOLDER, DAY
 
@@ -217,5 +217,14 @@ else:
         LOG_FOLDER
     )
     # Create all tables in the database.
-    create_tables()
+    from models.usuario import Usuario
+    from models.produto import Produto
+    from models.pedido import Pedido
+    from models.funcionario import Funcionario
+    from models.ticket import Ticket
 
+    create_table(Usuario)
+    create_table(Produto)
+    create_table(Pedido)
+    create_table(Funcionario)
+    create_table(Ticket)

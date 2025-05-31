@@ -1,7 +1,7 @@
 import streamlit
-from database.database import SessionLocal
 from sqlalchemy import text
-
+from database.database import SessionLocal
+from functions.table import view_table
 def page_config(
         title:str = 'DataAnalytics',
         icon:str = '',
@@ -208,6 +208,32 @@ def page_config(
             if streamlit.button("Enviar", use_container_width=True):
                 pass
             streamlit.divider()
+        with streamlit.expander(label='Ticket de suporte'):
+            streamlit.subheader(body=':green[Ticket de suporte]', divider='green')
+            tab1, tab2 = streamlit.tabs(['Abrir ticket', 'Visualizar tickets'])
+            with tab1:
+                user = streamlit.text_input(label='Usuario', placeholder='Digite o seu nome de usuario')
+                priority = streamlit.selectbox(
+                    label='Prioridade',
+                    options=['Baixa', 'Media', 'Alta'],
+                    index=None,
+                    placeholder='Selecione a prioridade'
+                )
+                subject = streamlit.text_input(
+                    label='Assunto',
+                    placeholder='Digite o assunto sobre o ticket'
+                )
+                info = streamlit.text_area(
+                    label='Informações sobre o ticket',
+                    placeholder='Digite os detalhes sobre o ocorrido'
+                )
+                if streamlit.button(
+                    label='Enviar ticket',
+                    use_container_width=True
+                ):
+                    pass
+            with tab2:
+                streamlit.info('')
         with streamlit.expander(
             label='Entrar',
             expanded=True,

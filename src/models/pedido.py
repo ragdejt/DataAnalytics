@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, String
 from database.database import Base
-from datetime import date
 class Pedido(Base):
     __tablename__ = 'Pedidos'
     ID = Column(
@@ -23,7 +22,6 @@ class Pedido(Base):
     Data = Column(
         String,
         nullable=False,
-        default=date.ctime()
     )
     Data_Entrega = Column(
         String,
