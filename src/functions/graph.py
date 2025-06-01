@@ -109,18 +109,19 @@ def graph_view(nome:str, sigla:str, dataframe:pandas.DataFrame):
     with streamlit.expander(label=f'{nome}'):
         streamlit.subheader(f":green[``{sigla}`` - {nome}]", divider='green')
 
-        with streamlit.container(border=True):
-            streamlit.metric(
-                label=f':green[``{sigla}`` - {nome}]',
-                value=f'{numpy.random.randint(0, 100)}%',
-                delta=f'{numpy.random.randint(0, 100)}%',
-                delta_color="normal",
-            )
-            streamlit.metric(
-                label=f':green[``{sigla}`` - {nome}]',
-                value=f'{numpy.random.randint(0, 60)}min',
-                delta=f'{numpy.random.randint(0, 60)}min',
-                delta_color="normal",
-            )
+        streamlit.metric(
+            label=f':green[``{sigla}`` - {nome}]',
+            value=f'{numpy.random.randint(0, 100)}%',
+            delta=f'{numpy.random.randint(0, 100)}% em comparação com mês anterior',
+            delta_color="normal",
+            border=True
+        )
+        streamlit.metric(
+            label=f':green[``{sigla}`` - {nome}]',
+            value=f'{numpy.random.randint(0, 60)}min',
+            delta=f'{numpy.random.randint(0, 60)}min em comparação com mês anterior',
+            delta_color="normal",
+            border=True
+        )
         graph_config(dataframe, nome)
 

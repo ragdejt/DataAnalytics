@@ -6,8 +6,9 @@ recebimentos = page_config(title="Recebimentos")
 if streamlit.session_state['login']:
     match recebimentos:
         case 'Adicionar':
-            streamlit.subheader(":green[Adicionar recebimento]", divider='green')
-            streamlit.info("Funcionalidade em desenvolvimento.")
+            streamlit.text_input(
+                label=''
+            )
         case 'Editar':
             streamlit.subheader(":green[Editar recebimentos]", divider='green')
             streamlit.info("Funcionalidade em desenvolvimento.")

@@ -36,8 +36,6 @@ def edit_table(
     
     """
     data_table = view_table(table_name)
-    if data_table.empty:
-        streamlit.info("A tabela está vazia. Não há dados para editar.")
 
     new_data = streamlit.data_editor(
         data=data_table,

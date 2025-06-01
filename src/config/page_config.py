@@ -1,7 +1,7 @@
 import streamlit
 from sqlalchemy import text
 from database.database import SessionLocal
-from functions.table import view_table
+
 def page_config(
         title:str = 'DataAnalytics',
         icon:str = '',
@@ -62,6 +62,7 @@ def page_config(
             )
             streamlit.button(
                 label='Sair',
+                icon=':material/logout:',
                 use_container_width=True,
                 on_click=lambda: streamlit.session_state.update({'login': False}),
             )
@@ -71,7 +72,10 @@ def page_config(
         streamlit.subheader('Centralize informações, automatize processos e ganhe eficiência operacional com relatórios em tempo real.')  
         streamlit.write("Isso não é futurismo é :green[DataAnalytics]!")
 
-        with streamlit.expander("Porque Data Analytics ?"):
+        with streamlit.expander(
+            label="Porque Data Analytics ?",
+            icon=':material/indeterminate_question_box:',
+        ):
             streamlit.info("""
             A utilização de um sistema logístico traz inúmeras vantagens para qualquer empresa que busca crescimento, organização e eficiência. 
             Esse tipo de sistema permite que todas as informações essenciais como dados de produtos, fornecedores, funcionários e estoque sejam centralizadas e organizadas de forma clara! 
@@ -174,68 +178,79 @@ def page_config(
                 Empresas que não utilizam sistemas estruturados enfrentam dificuldade para gerar relatórios detalhados! 
                 Prejudicando o acompanhamento do desempenho, o planejamento estratégico e a transparência em auditorias.               
                 """)
-        with streamlit.expander("Sobre nós"):
+        with streamlit.expander(
+            label="Sobre nós",
+            icon=':material/contact_page:'
+        ):
             streamlit.subheader(":green[Quem somos]", divider="green")
             streamlit.write(
             """
             ✔️``r4gd3j7``                
             """)
-        with streamlit.expander("Contato"):
-            streamlit.subheader(":green[Formulário para contato]", divider="green")
-            streamlit.text_input(
-                label="Nome completo",
-                type="default",
-                help="Full name.",
-                placeholder="Digite o nome completo."
-            )
-            streamlit.text_input(
-                label="Assunto",
-                type="default",
-                help="Subject.",
-                placeholder="Digite o motivo para o contato."
-            )
-            streamlit.text_input(
-                label="E-mail",
-                type="default",
-                help="E-mail.",
-                placeholder="Digite o e-mail."
-            )
-            streamlit.text_area(
-                label="Corpo do e-mail",
-                help="E-mail body.",
-                placeholder="Digite a mensagem que deseja encaminhar."
-            )
-            if streamlit.button("Enviar", use_container_width=True):
-                pass
-            streamlit.divider()
-        with streamlit.expander(label='Ticket de suporte'):
+        with streamlit.expander(
+            label="Contato",
+            icon=':material/contact_mail:'
+        ):
+            with streamlit.form(key='contact_form'):
+                streamlit.subheader(":green[Formulário para contato]", divider="green")
+                streamlit.text_input(
+                    label="Nome completo",
+                    type="default",
+                    help="Full name.",
+                    placeholder="Digite o nome completo."
+                )
+                streamlit.text_input(
+                    label="Assunto",
+                    type="default",
+                    help="Subject.",
+                    placeholder="Digite o motivo para o contato."
+                )
+                streamlit.text_input(
+                    label="E-mail",
+                    type="default",
+                    help="E-mail.",
+                    placeholder="Digite o e-mail."
+                )
+                streamlit.text_area(
+                    label="Corpo do e-mail",
+                    help="E-mail body.",
+                    placeholder="Digite a mensagem que deseja encaminhar."
+                )
+                if streamlit.form_submit_button("Enviar", use_container_width=True):
+                    pass
+        with streamlit.expander(
+            label='Ticket de suporte',
+            icon=':material/help:'
+        ):
             streamlit.subheader(body=':green[Ticket de suporte]', divider='green')
             tab1, tab2 = streamlit.tabs(['Abrir ticket', 'Visualizar tickets'])
             with tab1:
-                user = streamlit.text_input(label='Usuario', placeholder='Digite o seu nome de usuario')
-                priority = streamlit.selectbox(
-                    label='Prioridade',
-                    options=['Baixa', 'Media', 'Alta'],
-                    index=None,
-                    placeholder='Selecione a prioridade'
-                )
-                subject = streamlit.text_input(
-                    label='Assunto',
-                    placeholder='Digite o assunto sobre o ticket'
-                )
-                info = streamlit.text_area(
-                    label='Informações sobre o ticket',
-                    placeholder='Digite os detalhes sobre o ocorrido'
-                )
-                if streamlit.button(
-                    label='Enviar ticket',
-                    use_container_width=True
-                ):
-                    pass
+                with streamlit.form(key='ticket_form'):
+                    user = streamlit.text_input(label='Usuario', placeholder='Digite o seu nome de usuario')
+                    priority = streamlit.selectbox(
+                        label='Prioridade',
+                        options=['Baixa', 'Media', 'Alta'],
+                        index=None,
+                        placeholder='Selecione a prioridade'
+                    )
+                    subject = streamlit.text_input(
+                        label='Assunto',
+                        placeholder='Digite o assunto sobre o ticket'
+                    )
+                    info = streamlit.text_area(
+                        label='Informações sobre o ticket',
+                        placeholder='Digite os detalhes sobre o ocorrido'
+                    )
+                    if streamlit.form_submit_button(
+                        label='Enviar ticket',
+                        use_container_width=True
+                    ):
+                        pass
             with tab2:
-                streamlit.info('')
+                pass
         with streamlit.expander(
             label='Entrar',
+            icon=':material/login:',
             expanded=True,
         ):
             USERNAME = streamlit.text_input(
@@ -247,7 +262,11 @@ def page_config(
                 type='password',
                 placeholder='Digite sua senha',
             )
-            if streamlit.button('Entrar', use_container_width=True):
+            if streamlit.button(
+                label='Entrar',
+                icon=':material/login:',
+                use_container_width=True
+            ):
                 with SessionLocal() as session:
                     query = text(f"SELECT * FROM Usuarios WHERE Usuario = '{USERNAME}' AND Senha = '{PASSWORD}'")
                     result = session.execute(query).fetchone()

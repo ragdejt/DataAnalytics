@@ -221,8 +221,8 @@ else:
     from models.produto import Produto
     from models.pedido import Pedido
     from models.funcionario import Funcionario
-    from models.ticket import Ticket
-
+    from models.ticket import Ticket    
+    
     create_table(Usuario)
     create_table(Produto)
     create_table(Pedido)
