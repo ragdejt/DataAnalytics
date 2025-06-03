@@ -10,7 +10,6 @@ def create_table(classe):
     
     classe.__table__.create(bind=engine, checkfirst=True)
 
-
 @timer
 def view_table(table_name):
     """
