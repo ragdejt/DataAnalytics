@@ -10,7 +10,6 @@ def add_product(
     description:str,
     category:str,
     price:float,
-    quantity:int,
     height:float,
     width:float,
     length:float,
@@ -25,7 +24,6 @@ def add_product(
         description (str): Descrição do produto.
         category (str): Categoria do produto.
         price (float): Preço do produto.
-        quantity (int): Quantidade do produto.
         height (float): Altura do produto.
         width (float): Largura do produto.
         length (float): Comprimento do produto.
@@ -39,7 +37,6 @@ def add_product(
                 Descricao=description,
                 Categoria=category,
                 Preco=price,
-                Quantidade=quantity,
                 Altura=height,
                 Largura=width,
                 Comprimento=length,

@@ -6,6 +6,11 @@ class Estoque(Base):
 
     __tablename__ = 'Estoques'
 
+    Id = Column(
+        Integer,
+        primary_key=True,
+        autoincrement=True
+    )
     Estoque = Column(
         Integer,
         nullable=False

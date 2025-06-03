@@ -1,6 +1,6 @@
 import streamlit
 from config.page_config import page_config
-
+from functions.table import view_table
 estoques = page_config(title='Estoques')
 
 if streamlit.session_state['login']:
@@ -52,3 +52,7 @@ if streamlit.session_state['login']:
                 use_container_width=True,
             ):
                 pass
+        case 'Editar':
+            streamlit.data_editor(view_table('Estoques'), hide_index=True)
+        case 'Consultar':
+            streamlit.dataframe(view_table('Estoques'), hide_index=True)

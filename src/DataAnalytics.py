@@ -222,9 +222,12 @@ else:
     from models.pedido import Pedido
     from models.funcionario import Funcionario
     from models.ticket import Ticket    
-    
+    from models.estoque import Estoque
+    from functions.stock import add_stock
     create_table(Usuario)
     create_table(Produto)
     create_table(Pedido)
     create_table(Funcionario)
     create_table(Ticket)
+    create_table(Estoque)
+    add_stock()
