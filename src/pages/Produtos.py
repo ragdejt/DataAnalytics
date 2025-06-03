@@ -32,12 +32,6 @@ if streamlit.session_state['login']:
                 step=0.5,
                 placeholder="Digite o preço do produto",
             )
-            product_quantity = streamlit.number_input(
-                label="Quantidade do produto",
-                min_value=0.0,
-                step=0.5,
-                placeholder="Digite a quantidade do produto",
-            )
             product_height = streamlit.number_input(
                 label="Altura do produto",
                 min_value=0.0,
@@ -76,7 +70,6 @@ if streamlit.session_state['login']:
                     description=product_description,
                     category=product_category,
                     price=produtct_price,
-                    quantity=product_quantity,
                     height=product_height,
                     width=product_width,
                     length=product_length,

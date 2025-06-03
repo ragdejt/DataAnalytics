@@ -226,18 +226,18 @@ def page_config(
             tab1, tab2 = streamlit.tabs(['Abrir ticket', 'Visualizar tickets'])
             with tab1:
                 with streamlit.form(key='ticket_form'):
-                    user = streamlit.text_input(label='Usuario', placeholder='Digite o seu nome de usuario')
-                    priority = streamlit.selectbox(
+                    streamlit.text_input(label='Usuario', placeholder='Digite o seu nome de usuario')
+                    streamlit.selectbox(
                         label='Prioridade',
                         options=['Baixa', 'Media', 'Alta'],
                         index=None,
                         placeholder='Selecione a prioridade'
                     )
-                    subject = streamlit.text_input(
+                    streamlit.text_input(
                         label='Assunto',
                         placeholder='Digite o assunto sobre o ticket'
                     )
-                    info = streamlit.text_area(
+                    streamlit.text_area(
                         label='Informações sobre o ticket',
                         placeholder='Digite os detalhes sobre o ocorrido'
                     )
