@@ -12,7 +12,7 @@ class Estoque(Base):
         autoincrement=True
     )
     Estoque = Column(
-        Integer,
+        String,
         nullable=False
     )
     Rua = Column(

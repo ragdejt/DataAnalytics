@@ -1,9 +1,8 @@
 from rich import print
 from pathlib import Path
-from decorators.timer import timer
 from constants.constants import OK
 
-@timer
+
 def create_directories(*directories:Path):
     """
     Cria os diretórios necessários para o projeto funcionar.

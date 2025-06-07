@@ -1,48 +1,48 @@
 import streamlit
 from config.page_config import page_config
-from functions.table import view_table
+from functions.table import view_table, edit_table
+from constants.constants import CATEGORIAS
+
 estoques = page_config(title='Estoques')
 
 if streamlit.session_state['login']:
     match estoques:
         case 'Adicionar':
             streamlit.subheader(':green[Adicionar]', divider='green')
-            streamlit.number_input(
+            streamlit.info('Funcionalidade em desenvolvimento')
+            estoque = streamlit.selectbox(
                 label='Estoque',
-                min_value=1,
-                max_value=4,
-                step=1,
+                options=CATEGORIAS
             )
-            streamlit.number_input(
+            rua = streamlit.number_input(
                 label='Rua',
                 min_value=1,
                 max_value=10,
                 step=1,                
             )
-            streamlit.number_input(
+            predio = streamlit.number_input(
                 label='Predio',
                 min_value=1,
                 max_value=10,
                 step=1,
             )
-            streamlit.number_input(
+            andar = streamlit.number_input(
                 label='Andar',
                 min_value=0,
                 max_value=5,
                 step=1,
             )
-            streamlit.selectbox(
+            lado = streamlit.selectbox(
                 label='Lado',
                 options=['A', 'B'],
                 placeholder='Selecione o lado',
-                index=None
             )
-            streamlit.number_input(
+            produto = streamlit.number_input(
                 label='Produto',
                 min_value=0,
                 step=1,
             )
-            streamlit.number_input(
+            quantidade = streamlit.number_input(
                 label='Quantidade',
                 min_value=0,
                 step=1,
@@ -53,6 +53,7 @@ if streamlit.session_state['login']:
             ):
                 pass
         case 'Editar':
-            streamlit.data_editor(view_table('Estoques'), hide_index=True)
+            streamlit.subheader(':green[Editar estoque]', divider='green')
+            edit_table('Estoques')
         case 'Consultar':
             streamlit.dataframe(view_table('Estoques'), hide_index=True)

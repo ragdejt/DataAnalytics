@@ -52,3 +52,5 @@ def edit_table(
             if_exists='replace',
             index=False
         )
+        streamlit.success('Edição feita com sucesso')
+        streamlit.toast('Edição feita com sucesso')

@@ -1,6 +1,27 @@
 import pandas
 import numpy
 import streamlit
+import plotly.express
+from graphs.graph_bar import graph_bar
+
+graph_data = pandas.DataFrame(data={
+        'Dia':range(1,31),
+        'Janeiro':numpy.random.randint(low=1, high=100, size=30),
+        'Fevereiro':numpy.random.randint(low=1, high=100, size=30),
+        'Março':numpy.random.randint(low=1, high=100, size=30),
+        'Abril':numpy.random.randint(low=1, high=100, size=30),
+        'Maio':numpy.random.randint(low=1, high=100, size=30),
+        'Junho':numpy.random.randint(low=1, high=100, size=30),
+        'Julho':numpy.random.randint(low=1, high=100, size=30),
+        'Agosto':numpy.random.randint(low=1, high=100, size=30),
+        'Setembro':numpy.random.randint(low=1, high=100, size=30),
+        'Outubro':numpy.random.randint(low=1, high=100, size=30),
+        'Novembro':numpy.random.randint(low=1, high=100, size=30),
+        'Dezembro':numpy.random.randint(low=1, high=100, size=30)
+    }
+)
+    
+
 def graph_config(dataframe:pandas.DataFrame, name):
     """
     Configura o gráfico com base no dataframe, eixo X e eixo Y.
@@ -9,121 +30,168 @@ def graph_config(dataframe:pandas.DataFrame, name):
         dataframe (pandas.DataFrame): DataFrame contendo os dados a serem plotados.
         name (str): Nome do gráfico para identificação.
     """
-    graph_type = streamlit.selectbox(
-        label="Selecione o tipo de gráfico",
-        options=['Barra', 'Area', 'Linha', 'Scatter'],
-        index=0,
-        placeholder="Escolha o tipo de gráfico que deseja visualizar.",
-        key=f'unique_key_for_selectbox_{name}',
-    )
-    selected = streamlit.pills(
-        label='Selecione uma ou mais colunas',
-            
-        options=dataframe.columns,
-        selection_mode='multi',
-        default=[
-            'Dia',
-            "01-Janeiro",
-            "02-Fevereiro",
-            "03-Março",
-            "04-Abril",
-            "05-Maio",
-            "06-Junho",
-            "07-Julho",
-            "08-Agosto",
-            "09-Setembro",
-            "10-Outubro",
-            "11-Novembro",
-            "12-Dezembro"
-        ],
-        key=f'unique_key_for_pills_{name}',
-    )
-    if not selected:
-        streamlit.subheader('``Nenhuma coluna selecionada!``')
-    column1, column2, column3 = streamlit.columns(3)
-    with column1:
-        horizontal = streamlit.toggle(
-            label='Exibir gráfico horizontal',
-            value=False,
-            disabled=graph_type != 'Barra',
-            key=f'unique_key_for_checkbox_toggle_{name}',
+    with streamlit.expander(label=f'{name}'):
+
+        graph_type = streamlit.selectbox(
+            label="Selecione o tipo de gráfico",
+            options=[
+                'Barra',
+                'Area',
+                'Linha',
+                'Scatter',
+            ],
+            index=None,
+            placeholder="Escolha o tipo de gráfico.",
+            key=f'unique_key_for_selectbox_{name}',
         )
-    with column2:
-        stacked = streamlit.toggle(
-            label='Exibir gráfico empilhado',
-            value=True,
-            disabled=graph_type not in 'Barra',
-            key=f'unique_key_for_stacked_toggle_{name}',
+        orientacao = streamlit.selectbox(
+            label='Orientação',
+            options=["Horizontal", "Vertical"],
+            index=None,
+            placeholder='Selecione a orientação do gráfico.',
+            key=f'unique_key_for_orientation_{name}'
         )
-    with column3:
-        if streamlit.toggle(
-            label='3d',
-            value=True,
-            key=f'unique_key_for_3d_toggle_{name}',
-            disabled=True
-        ):
-            pass
-    match graph_type:
-        case 'Barra':
-            streamlit.bar_chart(
-                data=dataframe[selected],
-                x='Dia',
-                y=selected,
-                y_label=['Dia' if horizontal else 'Tempo (minutos)'],
-                use_container_width=True,
-                horizontal=horizontal,
-                stack=stacked
-            )
-        case 'Area':
-            streamlit.area_chart(
-                dataframe[selected],
-                x='Dia',
-                y=selected,
-                use_container_width=True,
-                stack=stacked
-            )
-        case 'Linha':
-            streamlit.line_chart(
-                data=dataframe[selected],
-                x='Dia',
-                y=selected,
-                use_container_width=True,
-            )
-        case 'Scatter':
-            streamlit.scatter_chart(
-                data=dataframe[selected],
-                x='Dia',
-                y=selected,
-                use_container_width=True,
-            )
+        orientation_code = None
+        match orientacao:
+            case "Horizontal":
+                orientation_code = 'h'
+            case "Vertical":
+                orientation_code = 'v'
 
-def graph_view(nome:str, sigla:str, dataframe:pandas.DataFrame):
-    """
-    Exibe o gráfico com base no dataframe e nome.
+        bar_type = streamlit.selectbox(
+            label='Tipo de barra',
+            options=['Relativo', 'Grupo', 'Sobrepor'],
+            index=None,
+            placeholder='Escolha o tipo de barra.',
+            key=f'unique_key_for_bartype_{name}'
+        )
+        bar_type_code = None
+        match bar_type:
+            case 'Relativo':
+                bar_type_code = 'relative'
+            case 'Grupo':
+                bar_type_code = 'group'
+            case 'Sobrepor':
+                bar_type_code = 'overlay'
 
-    Args:
-        nome (str): Nome do gráfico.
-        sigla (str): Sigla do gráfico.
-        dataframe (pandas.DataFrame): DataFrame contendo os dados a serem plotados.
-    """
-    with streamlit.expander(label=f'{nome}'):
-        streamlit.subheader(f":green[``{sigla}`` - {nome}]", divider='green')
-        column1, column2 = streamlit.columns((2))
-        with column1:
-            streamlit.metric(
-                label=f':green[``{sigla}`` - {nome}]',
-                value=f'{numpy.random.randint(0, 100)}%',
-                delta=f'{numpy.random.randint(0, 100)}% em comparação com mês anterior',
-                delta_color="normal",
-                border=True
-            )
-        with column2:
-            streamlit.metric(
-                label=f':green[``{sigla}`` - {nome}]',
-                value=f'{numpy.random.randint(0, 60)}min',
-                delta=f'{numpy.random.randint(0, 60)}min em comparação com mês anterior',
-                delta_color="normal",
-                border=True
-            )
-        graph_config(dataframe, nome)
+        match graph_type:
+            case 'Barra':
+                streamlit.plotly_chart(figure_or_data=graph_bar(
+                    df=graph_data,
+                    x='Dia',
+                    xaxis_title='Dia',
+                    y=['Janeiro',
+                        'Fevereiro',
+                        'Março',
+                        'Abril',
+                        'Maio',
+                        'Junho',
+                        'Julho',
+                        'Agosto',
+                        'Setembro',
+                        'Outubro',
+                        'Novembro',
+                        'Dezembro',
+                    ],
+                    yaxis_title='Valor',
+                    title=f'Grafico {name}',
+                    subtitle='Grafico barra',
+                    legend_title='Mês',
+                    orientation=orientation_code,
+                    barmode=bar_type_code
+                    )
+                )      
+                column1, column2 = streamlit.columns((2))
+                with column1:
+                    streamlit.metric(
+                        label=f':green[{name}]',
+                        value=f'{numpy.random.randint(0, 100)}%',
+                        delta=f'{numpy.random.randint(0, 100)}% em comparação com mês anterior',
+                        delta_color="normal",
+                        border=True
+                    )
+                with column2:
+                    streamlit.metric(
+                        label=f':green[{name}]',
+                        value=f'{numpy.random.randint(0, 60)}min',
+                        delta=f'{numpy.random.randint(0, 60)}min em comparação com mês anterior',
+                        delta_color="normal",
+                        border=True
+                    )
 
+            case 'Area':
+                pass
+            case 'Linha':
+                pass
+            case 'Scatter':
+                pass
+
+
+def graph_scatter(
+    x,
+    y,
+    title:str,
+    subtitle:str
+):
+    fig = plotly.express.scatter(
+        x=x,
+        y=y,
+        title=title,
+        subtitle=subtitle
+    )
+    streamlit.plotly_chart(
+        figure_or_data=fig,
+        use_container_width=True,
+    )
+
+def graph_scatter_3d(
+    x,
+    y,
+    z,
+    title:str,
+    subtitle:str
+):
+    fig = plotly.express.scatter_3d(
+        x=x,
+        y=y,
+        z=z,
+        title=title,
+        subtitle=subtitle
+    )
+    streamlit.plotly_chart(
+        figure_or_data=fig,
+        use_container_width=True,
+    )
+
+def graph_scatter_map(
+    data,
+    latitude,
+    longitude,
+    title,
+    subtitle
+):
+    fig = plotly.express.scatter_map(
+        data_frame=data,
+        lat=latitude,
+        lon=longitude,
+        map_style='satellite',
+        title=title,
+        subtitle=subtitle
+    )
+    streamlit.plotly_chart(
+        figure_or_data=fig,
+        use_container_width=True,
+
+    )
+
+def graph_line(x, y, title, subtitle):
+    fig = plotly.express.line(
+        x=x,
+        y=y,
+        title=title,
+        subtitle=subtitle
+    )
+    streamlit.plotly_chart(
+        figure_or_data=fig,
+        use_container_width=True,
+    )

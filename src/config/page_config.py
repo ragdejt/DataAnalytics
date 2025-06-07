@@ -74,7 +74,7 @@ def page_config(
 
         with streamlit.expander(
             label="Porque Data Analytics ?",
-            icon=':material/indeterminate_question_box:',
+            icon=':material/question_mark:',
         ):
             streamlit.info("""
             A utilização de um sistema logístico traz inúmeras vantagens para qualquer empresa que busca crescimento, organização e eficiência. 
@@ -222,60 +222,88 @@ def page_config(
             label='Ticket de suporte',
             icon=':material/help:'
         ):
-            streamlit.subheader(body=':green[Ticket de suporte]', divider='green')
-            tab1, tab2 = streamlit.tabs(['Abrir ticket', 'Visualizar tickets'])
-            with tab1:
-                with streamlit.form(key='ticket_form'):
-                    streamlit.text_input(label='Usuario', placeholder='Digite o seu nome de usuario')
-                    streamlit.selectbox(
-                        label='Prioridade',
-                        options=['Baixa', 'Media', 'Alta'],
-                        index=None,
-                        placeholder='Selecione a prioridade'
-                    )
-                    streamlit.text_input(
-                        label='Assunto',
-                        placeholder='Digite o assunto sobre o ticket'
-                    )
-                    streamlit.text_area(
-                        label='Informações sobre o ticket',
-                        placeholder='Digite os detalhes sobre o ocorrido'
-                    )
-                    if streamlit.form_submit_button(
-                        label='Enviar ticket',
-                        use_container_width=True
-                    ):
-                        pass
-            with tab2:
-                pass
+            with streamlit.form(key='ticket_form'):
+                streamlit.text_input(label='Usuario', placeholder='Digite o seu nome de usuario')
+                streamlit.selectbox(
+                    label='Prioridade',
+                    options=['Baixa', 'Media', 'Alta'],
+                    index=None,
+                    placeholder='Selecione a prioridade'
+                )
+                streamlit.text_input(
+                    label='Assunto',
+                    placeholder='Digite o assunto sobre o ticket'
+                )
+                streamlit.text_area(
+                    label='Informações sobre o ticket',
+                    placeholder='Digite os detalhes sobre o ocorrido'
+                )
+                if streamlit.form_submit_button(
+                    label='Enviar ticket',
+                    use_container_width=True
+                ):
+                    pass
         with streamlit.expander(
             label='Entrar',
-            icon=':material/login:',
-            expanded=True,
+            icon=':material/account_circle:',
         ):
-            USERNAME = streamlit.text_input(
-                label='Usuario',
-                placeholder='Digite seu usuário',
-            )
-            PASSWORD = streamlit.text_input(
-                label='Senha',
-                type='password',
-                placeholder='Digite sua senha',
-            )
-            if streamlit.button(
-                label='Entrar',
-                icon=':material/login:',
-                use_container_width=True
-            ):
-                with SessionLocal() as session:
-                    query = text(f"SELECT * FROM Usuarios WHERE Usuario = '{USERNAME}' AND Senha = '{PASSWORD}'")
-                    result = session.execute(query).fetchone()
-                    if result:
-                        streamlit.session_state['login'] = True
-                        streamlit.session_state['user'] = USERNAME
-                        streamlit.success('Login realizado com sucesso!')
-                        streamlit.toast('Login realizado com sucesso!')
-                        streamlit.rerun()
-                    else:
-                        streamlit.error('Usuário ou senha inválidos!')
-                        streamlit.toast('Usuário ou senha inválidos!')
+            with streamlit.form(key='login_form'):
+                USERNAME = streamlit.text_input(
+                    label='Usuario',
+                    placeholder='Digite seu usuário',
+                )
+                PASSWORD = streamlit.text_input(
+                    label='Senha',
+                    type='password',
+                    placeholder='Digite sua senha',
+                )
+                if streamlit.form_submit_button(
+                    label='Entrar',
+                    icon=':material/person:',
+                    use_container_width=True
+                ):
+                    with SessionLocal() as session:
+                        query = text(f"SELECT * FROM Usuarios WHERE Usuario = '{USERNAME}' AND Senha = '{PASSWORD}'")
+                        result = session.execute(query).fetchone()
+                        if result:
+                            streamlit.session_state['login'] = True
+                            streamlit.session_state['user'] = USERNAME
+                            streamlit.success('Login realizado com sucesso!')
+                            streamlit.toast('Login realizado com sucesso!')
+                            streamlit.rerun()
+                        else:
+                            streamlit.error('Usuário ou senha inválidos!')
+                            streamlit.toast('Usuário ou senha inválidos!')
+        with streamlit.expander(
+            label='Registrar',
+            icon=':material/person_add:',
+        ):
+            with streamlit.form(key='register_form'):
+                streamlit.text_input(
+                    label='Usuario',
+                    placeholder='Digite seu nome de usuario'
+                )
+                streamlit.text_input(
+                    label='Email',
+                    placeholder='Digite seu E-mail'
+                )
+                streamlit.text_input(
+                    label='Nome completo',
+                    placeholder='Digite seu nome completo'
+                )
+                streamlit.text_input(
+                    label='Senha',
+                    placeholder='Digite sua senha',
+                    type='password'
+                )
+                streamlit.text_input(
+                    label='Repetir senha',
+                    placeholder='Repita sua senha',
+                    type='password'
+                )
+                if streamlit.form_submit_button(
+                    label='Registrar',
+                    icon=':material/person_add:',
+                    use_container_width=True
+                ):
+                    pass

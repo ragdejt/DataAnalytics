@@ -99,4 +99,3 @@ CARGO = [
     'Suporte Técnico',
     'Motorista',
 ]
-
