@@ -17,18 +17,18 @@ def add_product(
     active:bool = True,
 ):
     """
-    Adiciona um produto ao banco de dados.
+    ``Adiciona um produto ao banco de dados.``
 
-    Args:
-        name (str): Nome do produto.
-        description (str): Descrição do produto.
-        category (str): Categoria do produto.
-        price (float): Preço do produto.
-        height (float): Altura do produto.
-        width (float): Largura do produto.
-        length (float): Comprimento do produto.
-        weight (float): Peso do produto.
-        active (bool): Se o produto está ativo ou não.
+    Parâmetros:
+    - ``name`` (str): Nome do produto.
+    - ``description`` (str): Descrição do produto.
+    - ``category`` (str): Categoria do produto.
+    - ``price`` (float): Preço do produto.
+    - ``height`` (float): Altura do produto.
+    - ``width`` (float): Largura do produto.
+    - ``length`` (float): Comprimento do produto.
+    - ``weight`` (float): Peso do produto.
+    - ``active`` (bool): Se o produto está ativo ou não.
     """
     try:
         with SessionLocal() as session:
