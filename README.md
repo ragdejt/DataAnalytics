@@ -2,13 +2,16 @@
 
 ## Descrição
 
-    Com uma interface amigável e intuitiva, este repositório é ideal para profissionais que buscam aprimorar suas habilidades em gerenciamento de dados.
+    Com uma interface amigável e intuitiva, este repositório é ideal para profissionais
+    que buscam aprimorar suas habilidades em gerenciamento de dados.
 
 ## Tecnologias e Ferramentas
 
-    Este repositório contém um conjunto de scripts e ferramentas para análise de dados, incluindo visualização, limpeza e manipulação de dados.
+    Este repositório contém um conjunto de scripts e ferramentas para análise de dados,
+    incluindo visualização, limpeza e manipulação de dados.
     
-    O objetivo é fornecer uma base sólida para projetos de ciência de dados e análise estatística.
+    O objetivo é fornecer uma base sólida para projetos de ciência de dados e análise
+    estatística.
 
 ## Pré-requisitos & Instalação
 
@@ -26,7 +29,8 @@
 
 ## Contribuição
 
-    Contribuições são bem-vindas! Se você deseja contribuir com este repositório, siga as etapas abaixo:
+    Contribuições são bem-vindas!
+    Se você deseja contribuir com este repositório, siga as etapas abaixo:
 
 ## Licença
 
