@@ -1,17 +1,15 @@
 # DataAnalytics
 
-## Descrição
-
-    Com uma interface amigável e intuitiva, este repositório é ideal para profissionais
-    que buscam aprimorar suas habilidades em gerenciamento de dados.
+Com uma interface amigável e intuitiva, este repositório é ideal para profissionais
+que buscam aprimorar suas habilidades em gerenciamento de dados.
 
 ## Tecnologias e Ferramentas
 
-    Este repositório contém um conjunto de scripts e ferramentas para análise de dados,
-    incluindo visualização, limpeza e manipulação de dados.
-    
-    O objetivo é fornecer uma base sólida para projetos de ciência de dados e análise
-    estatística.
+Este repositório contém um conjunto de scripts e ferramentas para análise de dados,
+incluindo visualização, limpeza e manipulação de dados.
+
+O objetivo é fornecer uma base sólida para projetos de ciência de dados e análise
+estatística.
 
 ## Pré-requisitos & Instalação
 
@@ -29,8 +27,9 @@
 
 ## Contribuição
 
-    Contribuições são bem-vindas!
-    Se você deseja contribuir com este repositório, siga as etapas abaixo:
+Contribuições são bem-vindas!
+
+Se você deseja contribuir com este repositório, siga as etapas abaixo:
 
 ## Licença
 
@@ -58,15 +57,17 @@
 
 ## Contato
 
-    Para mais informações, entre em contato:
+Para mais informações, entre em contato:
 
-    - Rogério Moreira
-    - Email:
-    
+- Rogério Moreira
+- Email:
+
 ## Agradecimentos
 
-    Agradeço a todos que contribuíram para este projeto, incluindo os usuários que forneceram feedback e sugestões.
+Agradeço a todos que contribuíram para este projeto, incluindo os usuários que forneceram feedback e sugestões.
 
-    Seu apoio é fundamental para o sucesso deste repositório e para a comunidade de análise de dados como um todo. Juntos, estamos construindo uma comunidade forte e colaborativa em torno da análise de dados.
+Seu apoio é fundamental para o sucesso deste repositório e para a
+comunidade de análise de dados como um todo. Juntos, estamos construindo
+uma comunidade forte e colaborativa em torno da análise de dados.
 
-    Obrigado por fazer parte desta jornada!
+Obrigado por fazer parte desta jornada!
