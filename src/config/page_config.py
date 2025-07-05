@@ -4,9 +4,11 @@ from database.database import SessionLocal
 
 def page_config(
         title:str = 'DataAnalytics',
-        icon:str = '',
+        icon:str = None,
         layout:str = 'wide',
         initial_sidebar_state:str = 'expanded',
+        option_sidebar:str= None
+
 ):
     """Configure the Streamlit page settings."""
     streamlit.set_page_config(
@@ -23,15 +25,12 @@ def page_config(
     streamlit.markdown(
         """
         <style>
-
         .stMainMenu {
             display:none;
         }
-
         .stDecoration {
             display:none;
         }
-
         </style>
         """,
         unsafe_allow_html=True
@@ -52,11 +51,7 @@ def page_config(
         with streamlit.sidebar:
             option = streamlit.selectbox(
                 label='Selecione uma opção',
-                options=[
-                    'Adicionar',
-                    'Editar',
-                    'Consultar'
-                ],
+                options=option_sidebar,
                 index=None,
                 placeholder='Selecione uma opção'
             )
@@ -73,22 +68,33 @@ def page_config(
         streamlit.write("Isso não é futurismo é :green[DataAnalytics]!")
 
         with streamlit.expander(
-            label="Porque Data Analytics ?",
+            label="Data Analytics",
             icon=':material/question_mark:',
         ):
             streamlit.info("""
-            A utilização de um sistema logístico traz inúmeras vantagens para qualquer empresa que busca crescimento, organização e eficiência. 
-            Esse tipo de sistema permite que todas as informações essenciais como dados de produtos, fornecedores, funcionários e estoque sejam centralizadas e organizadas de forma clara! 
-            Evitando perda de dados e falhas de controle. Além disso, a automação de processos rotineiros reduz o tempo gasto com tarefas manuais e diminui consideravelmente o risco de erros. 
-            O que impacta diretamente na produtividade da equipe.
-                            
-            Outro grande benefício é a geração rápida e confiável de relatórios, que facilita a análise de dados e permite uma tomada de decisões mais estratégica e segura. 
-            O controle de estoque também se torna muito mais eficiente, já que o sistema acompanha em tempo real a entrada e saída de produtos! 
-            Ajudando a evitar desperdícios, faltas ou excessos de mercadorias. 
             Com uma interface acessível e muitas vezes disponível online, gestores e colaboradores podem acessar informações de qualquer lugar, tornando a administração mais flexível e dinâmica.
             Além disso, um sistema logístico bem estruturado contribui diretamente para a redução de custos operacionais! 
             Pois diminui falhas, retrabalhos e desperdícios, aumentando o lucro e a eficiência geral da empresa. 
             Outro ponto importante é que, com os dados organizados e atualizados, auditorias e análises se tornam muito mais simples e transparentes, fortalecendo a confiança na gestão. 
+            A utilização de um sistema logístico traz inúmeras vantagens para qualquer empresa que busca:
+            - Crescimento
+            - Organização
+            - Eficiência
+             
+            Além disso, a automação de processos rotineiros reduz o tempo gasto com tarefas manuais e diminui consideravelmente o risco de erros. 
+            O que impacta diretamente na produtividade da equipe.
+                           
+            Esse tipo de sistema permite que armazene todas as informações essenciais como dados de:
+            - Produtos
+            - Fornecedores
+            - Funcionários
+            - Clientes
+            - Estoques
+                            
+            Outro grande benefício é a geração rápida e confiável de relatórios, que facilita a análise de dados e permite uma tomada de decisões mais estratégica e segura. 
+            O controle de estoque também se torna muito mais eficiente, já que o sistema acompanha em tempo real a entrada e saída de produtos! 
+            Ajudando a evitar desperdícios, faltas ou excessos de mercadorias.
+                            
             Em resumo, investir em um sistema logístico é apostar na organização, no controle e no crescimento sustentável de uma empresa.
             """
             )

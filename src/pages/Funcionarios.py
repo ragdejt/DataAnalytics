@@ -1,7 +1,7 @@
 import streamlit
 from config.page_config import page_config
 from constants.constants import ESTADO_CIVIL, CARGO
-funcionarios = page_config(title="Funcionários")
+funcionarios = page_config(title="Funcionários", option_sidebar=['Adicionar', 'Editar', 'Consultar'])
 
 if streamlit.session_state['login']:
     match funcionarios:

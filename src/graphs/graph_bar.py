@@ -1,9 +1,9 @@
 import plotly.express
 def graph_bar(
-    df,
+    data_frame,
     x,
     y,
-    title:str,
+    title:str=None,
     subtitle:str=None, 
     color=None,
     color_discrete_sequence=None, 
@@ -24,7 +24,7 @@ def graph_bar(
     ``Grafico Barra com plotly express``
 
     Parâmetros:
-    - ``df``: DataFrame com os dados
+    - ``data_frame``: DataFrame com os dados
     - ``x``: Coluna para o eixo x
     - ``y``: Coluna para o eixo y
     - ``title``: Título do gráfico
@@ -48,7 +48,7 @@ def graph_bar(
     - ``orientation``: Orientação ('v' para vertical ou 'h' para horizontal)
     """
     fig = plotly.express.bar(
-        data_frame=df,
+        data_frame=data_frame,
         x=x,
         y=y,
         title=title,
@@ -65,9 +65,19 @@ def graph_bar(
         orientation=orientation,
     )
     fig.update_layout(
-        xaxis_title=xaxis_title,
-        yaxis_title=yaxis_title,
         showlegend=show_legend,
-        legend_title_text=legend_title
+        legend_title_text=legend_title,
+        xaxis=dict(
+            title=xaxis_title,
+            showgrid=True,
+            gridcolor="#000000"
+        ),
+        yaxis=dict(
+            title=yaxis_title,
+            showgrid=True,
+            gridcolor="#000000",
+            range=[0, 100]
+        )
+
     )
     return fig

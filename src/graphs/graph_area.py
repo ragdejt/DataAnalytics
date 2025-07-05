@@ -1,16 +1,16 @@
-
 import plotly.express
-def graph_line(
-    data_frame=None,
-    x=None,
+
+def graph_area(
+    data_frame,
+    x,
+    y,
     xaxistitle=None,
-    y=None,
     yaxistitle=None,
     show_legend=True,
     legend_title=None,
     line_group=None,
     color=None,
-    line_dash=None,
+    pattern_shape=None,
     symbol=None,
     hover_name=None,
     hover_data=None,
@@ -21,10 +21,6 @@ def graph_line(
     facet_col_wrap=0,
     facet_row_spacing=None,
     facet_col_spacing=None,
-    error_x=None,
-    error_x_minus=None,
-    error_y=None,
-    error_y_minus=None,
     animation_frame=None,
     animation_group=None,
     category_orders=None,
@@ -32,8 +28,8 @@ def graph_line(
     orientation=None,
     color_discrete_sequence=None,
     color_discrete_map=None,
-    line_dash_sequence=None,
-    line_dash_map=None,
+    pattern_shape_sequence=None,
+    pattern_shape_map=None,
     symbol_sequence=None,
     symbol_map=None,
     markers=False,
@@ -42,23 +38,26 @@ def graph_line(
     range_x=None,
     range_y=None,
     line_shape=None,
-    render_mode='auto',
     title=None,
+    subtitle=None,
     template=None,
     width=None,
-    height=None,):
+    height=None,
+    groupnorm=None,
+    ):
     """
-    ``Cria um gráfico de linha interativo com múltiplas opções de personalização.``
+    ``Cria um gráfico de área interativo com múltiplas opções de personalização.``
 
     Parâmetros:
     - ``data_frame``: DataFrame contendo os dados
     - ``x``: Coluna para eixo x
-    - ``xaxistitle``: Nome da coluna para eixo x
-    - ``y``: Nome da coluna para eixo y
-    - ``yaxistitle``: Coluna para eixo y
+    - ``y``: Coluna para eixo y
+    - ``xaxistitle``: Título do eixo x
+    - ``yaxistitle``: Título do eixo y
+    - ``show_legend``: Mostrar legenda (True/False)
+    - ``legend_title``: Título da legenda
     - ``line_group``: Coluna para agrupamento de linhas
     - ``color``: Coluna para diferenciação por cores
-    - ``line_dash``: Coluna para padrões de traço
     - ``symbol``: Coluna para símbolos dos pontos
     - ``hover_name``: Coluna para destaque no hover
     - ``hover_data``: Lista de colunas adicionais no hover
@@ -69,10 +68,6 @@ def graph_line(
     - ``facet_col_wrap``: Número máximo de colunas de facetas
     - ``facet_row_spacing``: Espaçamento entre linhas de facetas
     - ``facet_col_spacing``: Espaçamento entre colunas de facetas
-    - ``error_x``: Coluna com erros para eixo x
-    - ``error_x_minus``: Coluna com erros negativos para eixo x
-    - ``error_y``: Coluna com erros para eixo y
-    - ``error_y_minus``: Coluna com erros negativos para eixo y
     - ``animation_frame``: Coluna para animação por frames
     - ``animation_group``: Coluna para agrupamento de animação
     - ``category_orders``: Ordem personalizada de categorias
@@ -80,8 +75,6 @@ def graph_line(
     - ``orientation``: Orientação do gráfico ('v' ou 'h')
     - ``color_discrete_sequence``: Sequência de cores discretas
     - ``color_discrete_map``: Mapeamento de cores discretas
-    - ``line_dash_sequence``: Sequência de padrões de traço
-    - ``line_dash_map``: Mapeamento de padrões de traço
     - ``symbol_sequence``: Sequência de símbolos
     - ``symbol_map``: Mapeamento de símbolos
     - ``markers``: Exibir marcadores nos pontos
@@ -90,19 +83,20 @@ def graph_line(
     - ``range_x``: Intervalo do eixo x
     - ``range_y``: Intervalo do eixo y
     - ``line_shape``: Formato da linha ('linear', 'spline', etc)
-    - ``render_mode``: Modo de renderização ('auto', 'svg', 'webgl')
     - ``title``: Título do gráfico
     - ``template``: Template de layout
     - ``width``: Largura do gráfico
     - ``height``: Altura do gráfico
+    - ``groupnorm``: Normalização de grupo (None, 'fraction', 'percent')
+    - ``stackgroup``: Coluna para agrupamento de stack
     """
-    fig = plotly.express.line(
+    fig=plotly.express.area(
         data_frame=data_frame,
         x=x,
         y=y,
         line_group=line_group,
         color=color,
-        line_dash=line_dash,
+        pattern_shape=pattern_shape,
         symbol=symbol,
         hover_name=hover_name,
         hover_data=hover_data,
@@ -113,38 +107,34 @@ def graph_line(
         facet_col_wrap=facet_col_wrap,
         facet_row_spacing=facet_row_spacing,
         facet_col_spacing=facet_col_spacing,
-        error_x=error_x,
-        error_x_minus=error_x_minus,
-        error_y=error_y,
-        error_y_minus=error_y_minus,
         animation_frame=animation_frame,
         animation_group=animation_group,
         category_orders=category_orders,
         labels=labels,
-        orientation=orientation,
         color_discrete_sequence=color_discrete_sequence,
         color_discrete_map=color_discrete_map,
-        line_dash_sequence=line_dash_sequence,
-        line_dash_map=line_dash_map,
+        pattern_shape_sequence=pattern_shape_sequence,
+        pattern_shape_map=pattern_shape_map,
         symbol_sequence=symbol_sequence,
         symbol_map=symbol_map,
         markers=markers,
+        orientation=orientation,
+        groupnorm=groupnorm,
         log_x=log_x,
         log_y=log_y,
         range_x=range_x,
         range_y=range_y,
         line_shape=line_shape,
-        render_mode=render_mode,
         title=title,
+        subtitle=subtitle,
         template=template,
         width=width,
-        height=height,
-    )
+        height=height
+    )    
     fig.update_layout(
         title=title,
         showlegend=show_legend,
         legend_title_text=legend_title,
-
         xaxis=dict(
             title=xaxistitle,
             showgrid=True,
@@ -153,8 +143,9 @@ def graph_line(
         yaxis=dict(
             title=yaxistitle,
             showgrid=True,
-            gridcolor="#000000",
-            range=[0, 100]
+            gridcolor="#000000"
         )
     )
+    
     return fig
+

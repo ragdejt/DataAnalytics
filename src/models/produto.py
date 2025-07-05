@@ -1,11 +1,9 @@
 from sqlalchemy import Column, String, Integer, Boolean, Numeric
 from database.database import Base
-
 class Produto(Base):
     """``Tabela de Produtos``"""
 
     __tablename__= "Produtos"
-
     ID = Column(
         Integer,
         primary_key=True,
@@ -62,4 +60,10 @@ class Produto(Base):
         Boolean,
         nullable=False,
         default=False,
+    )
+    SKU = Column(
+        String,
+        unique=True,
+        nullable=True,
+        default='Sem SKU',
     )

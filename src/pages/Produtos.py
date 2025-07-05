@@ -1,10 +1,13 @@
 import streamlit
-from constants.constants import CATEGORIAS
+from constants.constants import CATEGORIAS, TIPOS
 from config.page_config import page_config
 from functions.table import view_table
 from functions.product import add_product
 from functions.table import edit_table
-produtos = page_config(title="Produtos")
+produtos = page_config(
+    title="Produtos",
+    option_sidebar=['Adicionar', 'Editar', 'Consultar']
+    )
 
 if streamlit.session_state['login']:
     match produtos:
@@ -19,14 +22,21 @@ if streamlit.session_state['login']:
                 label="Descrição do produto",
                 placeholder="Digite a descrição do produto",
             )
-            product_category = streamlit.selectbox(
+            product_type = streamlit.selectbox(
                 label="Tipo do produto",
-                options=CATEGORIAS,
+                options=TIPOS,
                 index=0,
                 placeholder="Selecione o tipo de produto",
                 accept_new_options=True
             )
-            produtct_price = streamlit.number_input(
+            product_category = streamlit.selectbox(
+                label="Categoria do produto",
+                options=CATEGORIAS,
+                index=0,
+                placeholder="Selecione a categoria do produto",
+                accept_new_options=True
+            )
+            product_price = streamlit.number_input(
                 label="Preço do produto",
                 min_value=0.0,
                 step=0.5,
@@ -68,8 +78,8 @@ if streamlit.session_state['login']:
                 add_product(
                     name=product_name,
                     description=product_description,
-                    category=product_category,
-                    price=produtct_price,
+                    category=product_type,
+                    price=product_price,
                     height=product_height,
                     width=product_width,
                     length=product_length,

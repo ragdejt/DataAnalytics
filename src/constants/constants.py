@@ -61,8 +61,24 @@ DAY = [
     '29',
     '30',
 ]
-
 CATEGORIAS = [
+    'Alimentos',
+    'Bebidas',
+    'Limpeza',
+    'Higiene Pessoal',
+    'Eletrônicos',
+    'Roupas',
+    'Calçados',
+    'Brinquedos',
+    'Móveis',
+    'Ferramentas',
+    'Esportes',
+    'Saúde',
+    'Beleza',
+    'Automotivo',
+    'Jardinagem'
+]
+TIPOS = [
     'Seco',
     'Resfriado',
     'Congelado',

@@ -2,7 +2,8 @@ import streamlit
 from config.page_config import page_config
 from functions.table import edit_table
 from functions.table import view_table
-pedidos = page_config(title="Pedidos")
+pedidos = page_config(title="Pedidos", option_sidebar=['Adicionar', 'Editar', 'Consultar']
+)
 
 if streamlit.session_state['login']:
     match pedidos:
